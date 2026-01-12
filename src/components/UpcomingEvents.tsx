@@ -3,25 +3,14 @@ import { Zap } from "lucide-react";
 
 const upcomingEvents = [
   {
-    title: "Installation1",
+    title: "Aakruti – Upcoming Edition",
     description:
-      "dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text.",
-    image: "/events/Installation1.jpeg",
-    date: "Jan 15-17, 2025",
-  },
-  {
-    title: "Installation2",
-    description:
-      "dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text.",
-    image: "/events/Installation2.jpeg",
-    date: "Feb 8, 2025",
-  },
-  {
-    title: "Installation3",
-    description:
-      "dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text.",
-    image: "/events/Installation3.jpeg",
-    date: "Feb 20, 2025",
+      "DASCA is gearing up for the next edition of Aakruti, our annual flagship student fest.",
+    fullDescription:
+      "DASCA is gearing up for the next edition of Aakruti, our annual flagship student fest. The event promises an exciting blend of technical learning, creativity, competitions, and cultural experiences. More details will be revealed soon — stay tuned for what's coming next!",
+    image:
+      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop",
+    type: "Flagship Student Fest",
   },
 ];
 

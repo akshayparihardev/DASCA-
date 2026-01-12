@@ -5,57 +5,109 @@ import { History } from "lucide-react";
 interface TimelineEvent {
   title: string;
   description: string;
+  fullDescription?: string;
   image: string;
-  date: string;
+  date?: string;
+  type?: string;
 }
 
 const eventsData: Record<string, TimelineEvent[]> = {
+  "2026": [
+    {
+      title: "DSPL",
+      description:
+        "Exciting new initiatives are being planned for 2026. Stay tuned for updates!",
+      fullDescription:
+        "DASCA is planning exciting new initiatives and events for 2026. More details will be announced soon. Stay connected with us to be the first to know about upcoming workshops, fests, and learning opportunities.",
+      image:
+        "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=400&fit=crop",
+      type: "Coming Soon",
+    },
+  ],
+  "2025": [
+    {
+      title: "Aakruti'25 – Annual Student Fest",
+      description:
+        "DASCA's flagship three-day student fest blending technical learning, creativity, and cultural engagement.",
+      fullDescription:
+        "Aakruti'25 was DASCA's flagship three-day student fest blending technical learning, creativity, and cultural engagement. The event included industry sessions, resume workshops, e-sports tournaments, cultural nights, and inter-section competitions. With high participation across departments, Aakruti'25 fostered collaboration, talent showcase, and an engaging campus experience.",
+      image:
+        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop",
+      type: "Technical, Cultural & Creative Fest",
+    },
+    {
+      title: "DASCA Installation Ceremony 2025",
+      description:
+        "The formal induction of the new committee and the launch of initiatives for the academic year.",
+      fullDescription:
+        "The DASCA Installation Ceremony 2025 marked the formal induction of the new committee and the launch of initiatives for the academic year. The event featured addresses by faculty members and student leaders, highlighting DASCA's journey, vision, and future roadmap. Insightful discussions on technology trends and leadership set the tone for a year focused on learning, innovation, and collaboration.",
+      image:
+        "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=600&h=400&fit=crop",
+      type: "Committee Induction & Vision Launch",
+    },
+    {
+      title: "Alumni Interaction Session",
+      description:
+        "Insightful alumni interaction with former club president and industry professional Aadi Amit Ringay.",
+      fullDescription:
+        "DASCA hosted an insightful alumni interaction with former club president and industry professional Aadi Amit Ringay (SDE, Amadeus). The session focused on placement preparation, core technical subjects, internships, and interview strategies. Students actively engaged in discussions, gaining practical guidance and motivation for their career journeys.",
+      image:
+        "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&h=400&fit=crop",
+      type: "Career Guidance & Mentorship",
+    },
+    {
+      title: "Technical Training: Python & SQL",
+      description:
+        "Hands-on training session focused on strengthening Python and SQL fundamentals for placement readiness.",
+      fullDescription:
+        "This hands-on training session focused on strengthening Python and SQL fundamentals for placement readiness. The session included concept coverage, live problem-solving, assessments, and a mini project (Expense Tracker Platform). High engagement, practical exposure, and positive feedback highlighted the session's strong impact on student learning.",
+      image:
+        "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&h=400&fit=crop",
+      type: "Skill Development & Placement Training",
+    },
+  ],
   "2024": [
     {
-      title: "Invite",
+      title: "DASCA Installation Ceremony 2024",
       description:
-        "dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text.",
-      image: "/events/Installation4.jpeg",
-      date: "Nov 2024",
+        "The formal induction of the new committee and the beginning of the academic year.",
+      fullDescription:
+        "The DASCA Installation Ceremony 2024 marked the formal induction of the new committee and the beginning of the academic year. The event featured inspiring addresses by faculty and industry experts, discussions on emerging trends in Data Science, and the announcement of key collaborations. It laid a strong foundation for leadership, innovation, and collaborative learning within the data science community.",
+      image:
+        "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=600&h=400&fit=crop",
+      type: "Formal Induction & Academic Roadmap",
     },
     {
-      title: "Python for Data Science Workshop",
+      title: "Aakruti'24 – Student Fest",
       description:
-        "Hands-on workshop covering pandas, numpy, and data visualization fundamentals.",
-      image: "/events/Tech session1.jpeg",
-      date: "Sep 2024",
-    },
-    {
-      title: "DASCA Sports Branch Cup",
-      description:
-        "Annual sports event fostering team spirit and healthy competition among members.",
-      image: "/events/Sports.jpeg",
-      date: "Aug 2024",
+        "A vibrant student-led fest featuring a mix of technical activities, competitions, and cultural events.",
+      fullDescription:
+        "Aakruti'24 was a vibrant student-led fest featuring a mix of technical activities, competitions, and cultural events. The event encouraged creativity, teamwork, and student engagement across batches and departments, strengthening DASCA's role in fostering both technical growth and campus culture.",
+      image:
+        "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop",
+      type: "Technical & Cultural Fest",
     },
   ],
   "2023": [
     {
-      title: "SQL session",
+      title: "DASCA Installation Ceremony 2023",
       description:
-        "dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text.",
-      image: "/events/Tech session2.jpeg",
-      date: "Oct 2023",
+        "The formal establishment of the committee for the academic year with vision setting.",
+      fullDescription:
+        "The DASCA Installation Ceremony 2023 marked the formal establishment of the committee for the academic year. The event introduced the club's vision, objectives, and upcoming initiatives while emphasizing the importance of data science in modern technology. Faculty guidance and student participation set a collaborative tone for the year ahead.",
+      image:
+        "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=600&h=400&fit=crop",
+      type: "Committee Induction & Vision Setting",
     },
     {
-      title: "Alumni Talk",
+      title: "DSPL",
       description:
-        "dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text.",
-      image: "/events/Alumni talk.jpeg",
-      date: "Jul 2023",
-    },
-  ],
-  "2022": [
-    {
-      title: "Interviews",
-      description:
-        "dummy text dummy text dummy text dummy text dummy text dummy text dummy text dummy text.",
-      image: "/events/Interview.jpeg",
-      date: "Mar 2022",
+        "Hands-on training session focused on strengthening Python and SQL fundamentals for placement readiness.",
+      fullDescription:
+        "This hands-on training session focused on strengthening Python and SQL fundamentals for placement readiness. The session included concept coverage, live problem-solving, assessments, and a mini project (Expense Tracker Platform). High engagement, practical exposure, and positive feedback highlighted the session's strong impact on student learning.",
+      image:
+        "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&h=400&fit=crop",
+      type: "Skill Development & Placement Training",
     },
   ],
 };
