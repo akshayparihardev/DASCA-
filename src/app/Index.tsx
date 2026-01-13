@@ -1,4 +1,4 @@
-import Events from "./Events";
+import Events from "./events/Events";
 
 const Index = () => {
   return <Events />;

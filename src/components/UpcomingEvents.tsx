@@ -8,8 +8,7 @@ const upcomingEvents = [
       "DASCA is gearing up for the next edition of Aakruti, our annual flagship student fest.",
     fullDescription:
       "DASCA is gearing up for the next edition of Aakruti, our annual flagship student fest. The event promises an exciting blend of technical learning, creativity, competitions, and cultural experiences. More details will be revealed soon — stay tuned for what's coming next!",
-    image:
-      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop",
+    image: "/events/Interview.jpeg",
     type: "Flagship Student Fest",
   },
 ];
