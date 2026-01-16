@@ -5,6 +5,15 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Search, Sparkles } from "lucide-react";
 import { useState, useRef } from "react";
 
+// Helper function for GitHub CDN
+const GITHUB_USER = "akshayparihardev";
+const REPO_NAME = "DASCA-";
+const BRANCH = "main";
+
+const getImageUrl = (fileName: string) => {
+  return `https://cdn.jsdelivr.net/gh/${GITHUB_USER}/${REPO_NAME}@${BRANCH}/assets/members/${fileName}.png`;
+};
+
 export default function CommitteePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const heroRef = useRef(null);
@@ -20,101 +29,461 @@ export default function CommitteePage() {
 
   const members = [
     // ==================== HEADS (16 Members) ====================
-    // LEADERSHIP (President, Secretary, Treasurer)
-    { id: "h1", name: "Harsh Saoji", position: "head" as const, role: "President", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop", domain: "leadership" as const, year: "2025-26" as const },
-    { id: "h2", name: "Aditya Gugnani", position: "head" as const, role: "Secretary", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop", domain: "leadership" as const, year: "2025-26" as const },
-    { id: "h3", name: "Mehansh Masih", position: "head" as const, role: "Treasurer", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop", domain: "leadership" as const, year: "2025-26" as const },
+    // LEADERSHIP
+    { 
+      id: "h1", 
+      name: "Harsh Saoji", 
+      position: "head" as const, 
+      role: "President", 
+      image: getImageUrl("Harsh"),
+      domain: "leadership" as const, 
+      year: "2025-26" as const 
+    },
+    { 
+      id: "h2", 
+      name: "Aditya Gugnani", 
+      position: "head" as const, 
+      role: "Secretary", 
+      image: getImageUrl("Aditya"),
+      domain: "leadership" as const, 
+      year: "2025-26" as const 
+    },
+    { 
+      id: "h3", 
+      name: "Mehansh Masih", 
+      position: "head" as const, 
+      role: "Treasurer", 
+      image: getImageUrl("Mihansh"),
+      domain: "leadership" as const, 
+      year: "2025-26" as const 
+    },
     
     // Events
-    { id: "h4", name: "Alina Anjum", position: "head" as const, role: "Event Head", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop", domain: "events" as const, year: "2025-26" as const },
-    { id: "h5", name: "Ishan Kashikar", position: "head" as const, role: "Event Head", image: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=400&h=400&fit=crop", domain: "events" as const, year: "2025-26" as const },
+    { 
+      id: "h4", 
+      name: "Alina Anjum", 
+      position: "head" as const, 
+      role: "Event Head", 
+      image: getImageUrl("Alina"),
+      domain: "events" as const, 
+      year: "2025-26" as const 
+    },
+    { 
+      id: "h5", 
+      name: "Ishan Kashikar", 
+      position: "head" as const, 
+      role: "Event Head", 
+      image: getImageUrl("Ishan"),
+      domain: "events" as const, 
+      year: "2025-26" as const 
+    },
     
     // Cultural
-    { id: "h6", name: "Palak Bang", position: "head" as const, role: "Cultural Head", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop", domain: "cultural" as const, year: "2025-26" as const },
+    { 
+      id: "h6", 
+      name: "Palak Bang", 
+      position: "head" as const, 
+      role: "Cultural Head", 
+      image: getImageUrl("Palak b"),
+      domain: "cultural" as const, 
+      year: "2025-26" as const 
+    },
     
     // Creativity
-    { id: "h7", name: "Niharika Nashine", position: "head" as const, role: "Creativity Head", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop", domain: "creativity" as const, year: "2025-26" as const },
+    { 
+      id: "h7", 
+      name: "Niharika Nashine", 
+      position: "head" as const, 
+      role: "Creativity Head", 
+      image: getImageUrl("Niharika"),
+      domain: "creativity" as const, 
+      year: "2025-26" as const 
+    },
     
     // Publicity
-    { id: "h8", name: "Pranay Rokade", position: "head" as const, role: "Publicity Head", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop", domain: "publicity" as const, year: "2025-26" as const },
+    { 
+      id: "h8", 
+      name: "Pranay Rokade", 
+      position: "head" as const, 
+      role: "Publicity Head", 
+      image: getImageUrl("Pranay"),
+      domain: "publicity" as const, 
+      year: "2025-26" as const 
+    },
     
     // Technical
-    { id: "h9", name: "Kunal Choure", position: "head" as const, role: "Technical Head", image: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=400&h=400&fit=crop", domain: "technical" as const, year: "2025-26" as const },
+    { 
+      id: "h9", 
+      name: "Kunal Choure", 
+      position: "head" as const, 
+      role: "Technical Head", 
+      image: getImageUrl("Kunal"),
+      domain: "technical" as const, 
+      year: "2025-26" as const 
+    },
     
     // Sports
-    { id: "h10", name: "Prajjwal Mohan", position: "head" as const, role: "Sports Head", image: "https://images.unsplash.com/photo-1463453091185-61582044d556?w=400&h=400&fit=crop", domain: "sports" as const, year: "2025-26" as const },
-    { id: "h11", name: "Akshat Sharma", position: "head" as const, role: "Sports Head", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop", domain: "sports" as const, year: "2025-26" as const },
+    { 
+      id: "h10", 
+      name: "Prajjwal Mohan", 
+      position: "head" as const, 
+      role: "Sports Head", 
+      image: getImageUrl("Prajjwal"),
+      domain: "sports" as const, 
+      year: "2025-26" as const 
+    },
+    { 
+      id: "h11", 
+      name: "Akshat Sharma", 
+      position: "head" as const, 
+      role: "Sports Head", 
+      image: getImageUrl("Akshat"),
+      domain: "sports" as const, 
+      year: "2025-26" as const 
+    },
     
     // Social Media
-    { id: "h12", name: "Ayush Dhote", position: "head" as const, role: "Social Media Head", image: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=400&h=400&fit=crop", domain: "social-media" as const, year: "2025-26" as const },
+    { 
+      id: "h12", 
+      name: "Ayush Dhote", 
+      position: "head" as const, 
+      role: "Social Media Head", 
+      image: getImageUrl("Ayush"),
+      domain: "social-media" as const, 
+      year: "2025-26" as const 
+    },
     
     // Photography
-    { id: "h13", name: "Anshu Bagne", position: "head" as const, role: "Photography Head", image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop", domain: "photography" as const, year: "2025-26" as const },
-    { id: "h14", name: "Ayush Ambule", position: "head" as const, role: "Photography Head", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop", domain: "photography" as const, year: "2025-26" as const },
+    { 
+      id: "h13", 
+      name: "Anshu Bagne", 
+      position: "head" as const, 
+      role: "Photography Head", 
+      image: getImageUrl("Ansh"),
+      domain: "photography" as const, 
+      year: "2025-26" as const 
+    },
+    { 
+      id: "h14", 
+      name: "Ayush Ambule", 
+      position: "head" as const, 
+      role: "Photography Head", 
+      image: getImageUrl("ayusha"),
+      domain: "photography" as const, 
+      year: "2025-26" as const 
+    },
     
     // Design
-    { id: "h15", name: "Durva Deshpande", position: "head" as const, role: "Design Head", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop", domain: "design" as const, year: "2025-26" as const },
+    { 
+      id: "h15", 
+      name: "Durva Deshpande", 
+      position: "head" as const, 
+      role: "Design Head", 
+      image: getImageUrl("Durva"),
+      domain: "design" as const, 
+      year: "2025-26" as const 
+    },
     
     // Resource
-    { id: "h16", name: "Jay Trivedi", position: "head" as const, role: "Resource Head", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop", domain: "resource" as const, year: "2025-26" as const },
+    { 
+      id: "h16", 
+      name: "Jay Trivedi", 
+      position: "head" as const, 
+      role: "Resource Head", 
+      image: getImageUrl("Jay T"),
+      domain: "resource" as const, 
+      year: "2025-26" as const 
+    },
 
     // ==================== CO-HEADS (29 Members) ====================
-    // LEADERSHIP (Joint Secretaries + Joint Treasurer moved here)
-    { id: "ch1", name: "Kavya Chopade", position: "co-head" as const, role: "Joint Secretary", image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&h=400&fit=crop", domain: "leadership" as const, year: "2025-26" as const },
-    { id: "ch2", name: "Janhavi Welekar", position: "co-head" as const, role: "Joint Secretary", image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=400&fit=crop", domain: "leadership" as const, year: "2025-26" as const },
-    { id: "ch3", name: "Swapnil Patil", position: "co-head" as const, role: "Joint Treasurer", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop", domain: "leadership" as const, year: "2025-26" as const },
+    // LEADERSHIP
+    { 
+      id: "ch1", 
+      name: "Kavya Chopade", 
+      position: "co-head" as const, 
+      role: "Joint Secretary", 
+      image: getImageUrl("Kavya"),
+      domain: "leadership" as const, 
+      year: "2025-26" as const 
+    },
+    { 
+      id: "ch2", 
+      name: "Janhavi Welekar", 
+      position: "co-head" as const, 
+      role: "Joint Secretary", 
+      image: getImageUrl("Janhavi"),
+      domain: "leadership" as const, 
+      year: "2025-26" as const 
+    },
+    { 
+      id: "ch3", 
+      name: "Swapnil Patil", 
+      position: "co-head" as const, 
+      role: "Joint Treasurer", 
+      image: getImageUrl("Swapnil"),
+      domain: "leadership" as const, 
+      year: "2025-26" as const 
+    },
     
-    // EXECUTIVE MEMBERS (Only Vedansh Gupta and Parth Thakur)
-    { id: "ch28", name: "Vedansh Gupta", position: "co-head" as const, role: "Executive Member", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop", domain: "executive-members" as const, year: "2025-26" as const },
-    { id: "ch29", name: "Parth Thakur", position: "co-head" as const, role: "Executive Member", image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop", domain: "executive-members" as const, year: "2025-26" as const },
+    // EXECUTIVE MEMBERS
+    { 
+      id: "ch28", 
+      name: "Vedansh Gupta", 
+      position: "co-head" as const, 
+      role: "Executive Member", 
+      image: getImageUrl("Vedansh"),
+      domain: "executive-members" as const, 
+      year: "2025-26" as const 
+    },
+    { 
+      id: "ch29", 
+      name: "Parth Thakur", 
+      position: "co-head" as const, 
+      role: "Executive Member", 
+      image: getImageUrl("Parth"),
+      domain: "executive-members" as const, 
+      year: "2025-26" as const 
+    },
     
     // Events
-    { id: "ch4", name: "Khush Agrawal", position: "co-head" as const, role: "Event Co-Head", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop", domain: "events" as const, year: "2025-26" as const },
-    { id: "ch5", name: "Manya Mokhalgaya", position: "co-head" as const, role: "Event Co-Head", image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&h=400&fit=crop", domain: "events" as const, year: "2025-26" as const },
+    { 
+      id: "ch4", 
+      name: "Khush Agrawal", 
+      position: "co-head" as const, 
+      role: "Event Co-Head", 
+      image: getImageUrl("Khush"),
+      domain: "events" as const, 
+      year: "2025-26" as const 
+    },
+    { 
+      id: "ch5", 
+      name: "Manya Mokhalgaya", 
+      position: "co-head" as const, 
+      role: "Event Co-Head", 
+      image: getImageUrl("Manya"),
+      domain: "events" as const, 
+      year: "2025-26" as const 
+    },
     
     // Cultural
-    { id: "ch6", name: "Gouri Rajkarne", position: "co-head" as const, role: "Cultural Co-Head", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop", domain: "cultural" as const, year: "2025-26" as const },
-    { id: "ch7", name: "Krishna Chandak", position: "co-head" as const, role: "Cultural Co-Head", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop", domain: "cultural" as const, year: "2025-26" as const },
+    { 
+      id: "ch6", 
+      name: "Gouri Rajkarne", 
+      position: "co-head" as const, 
+      role: "Cultural Co-Head", 
+      image: getImageUrl("Gouri"),
+      domain: "cultural" as const, 
+      year: "2025-26" as const 
+    },
+    { 
+      id: "ch7", 
+      name: "Krishna Chandak", 
+      position: "co-head" as const, 
+      role: "Cultural Co-Head", 
+      image: getImageUrl("Krishna"),
+      domain: "cultural" as const, 
+      year: "2025-26" as const 
+    },
     
     // Publicity
-    { id: "ch8", name: "Ansh Chopda", position: "co-head" as const, role: "Publicity Co-Head", image: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=400&h=400&fit=crop", domain: "publicity" as const, year: "2025-26" as const },
-    { id: "ch9", name: "Rashi Pawar", position: "co-head" as const, role: "Publicity Co-Head", image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop", domain: "publicity" as const, year: "2025-26" as const },
+    { 
+      id: "ch8", 
+      name: "Ansh Chopda", 
+      position: "co-head" as const, 
+      role: "Publicity Co-Head", 
+      image: getImageUrl("Ansh C"),
+      domain: "publicity" as const, 
+      year: "2025-26" as const 
+    },
+    { 
+      id: "ch9", 
+      name: "Rashi Pawar", 
+      position: "co-head" as const, 
+      role: "Publicity Co-Head", 
+      image: getImageUrl("Rishi"),
+      domain: "publicity" as const, 
+      year: "2025-26" as const 
+    },
     
     // Technical
-    { id: "ch10", name: "Kanak Agrawal", position: "co-head" as const, role: "Technical Co-Head", image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=400&fit=crop", domain: "technical" as const, year: "2025-26" as const },
-    { id: "ch11", name: "Akshay Parihar", position: "co-head" as const, role: "Technical Co-Head", image: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=400&h=400&fit=crop", domain: "technical" as const, year: "2025-26" as const },
+    { 
+      id: "ch10", 
+      name: "Kanak Agrawal", 
+      position: "co-head" as const, 
+      role: "Technical Co-Head", 
+      image: getImageUrl("Kanak"),
+      domain: "technical" as const, 
+      year: "2025-26" as const 
+    },
+    { 
+      id: "ch11", 
+      name: "Akshay Parihar", 
+      position: "co-head" as const, 
+      role: "Technical Co-Head", 
+      image: getImageUrl("Akshay"),
+      domain: "technical" as const, 
+      year: "2025-26" as const 
+    },
     
     // Creativity
-    { id: "ch12", name: "Palak Ganwani", position: "co-head" as const, role: "Creativity Co-Head", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop", domain: "creativity" as const, year: "2025-26" as const },
-    { id: "ch13", name: "Kshitij Chilate", position: "co-head" as const, role: "Creativity Co-Head", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop", domain: "creativity" as const, year: "2025-26" as const },
+    { 
+      id: "ch12", 
+      name: "Palak Ganwani", 
+      position: "co-head" as const, 
+      role: "Creativity Co-Head", 
+      image: getImageUrl("Palak G"),
+      domain: "creativity" as const, 
+      year: "2025-26" as const 
+    },
+    { 
+      id: "ch13", 
+      name: "Kshitij Chilate", 
+      position: "co-head" as const, 
+      role: "Creativity Co-Head", 
+      image: getImageUrl("kshitij"),
+      domain: "creativity" as const, 
+      year: "2025-26" as const 
+    },
     
     // Social Media
-    { id: "ch14", name: "Aryaman Verma", position: "co-head" as const, role: "Social Media Co-Head", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop", domain: "social-media" as const, year: "2025-26" as const },
-    { id: "ch15", name: "Prathamesh Rathod", position: "co-head" as const, role: "Social Media Co-Head", image: "https://images.unsplash.com/photo-1463453091185-61582044d556?w=400&h=400&fit=crop", domain: "social-media" as const, year: "2025-26" as const },
+    { 
+      id: "ch14", 
+      name: "Aryaman Verma", 
+      position: "co-head" as const, 
+      role: "Social Media Co-Head", 
+      image: getImageUrl("Aryaman"),
+      domain: "social-media" as const, 
+      year: "2025-26" as const 
+    },
+    { 
+      id: "ch15", 
+      name: "Prathamesh Rathod", 
+      position: "co-head" as const, 
+      role: "Social Media Co-Head", 
+      image: getImageUrl("Prathamesh Rathod"),
+      domain: "social-media" as const, 
+      year: "2025-26" as const 
+    },
     
     // Design
-    { id: "ch16", name: "Rishil Pawar", position: "co-head" as const, role: "Design Co-Head", image: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=400&h=400&fit=crop", domain: "design" as const, year: "2025-26" as const },
-    { id: "ch17", name: "Prajakta Tiwari", position: "co-head" as const, role: "Design Co-Head", image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop", domain: "design" as const, year: "2025-26" as const },
+    { 
+      id: "ch16", 
+      name: "Rishil Pawar", 
+      position: "co-head" as const, 
+      role: "Design Co-Head", 
+      image: getImageUrl("Rishil"),
+      domain: "design" as const, 
+      year: "2025-26" as const 
+    },
+    { 
+      id: "ch17", 
+      name: "Prajakta Tiwari", 
+      position: "co-head" as const, 
+      role: "Design Co-Head", 
+      image: getImageUrl("Prajakta"),
+      domain: "design" as const, 
+      year: "2025-26" as const 
+    },
     
     // Photography
-    { id: "ch18", name: "Bhargav Lende", position: "co-head" as const, role: "Photography Co-Head", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop", domain: "photography" as const, year: "2025-26" as const },
-    { id: "ch19", name: "Uday Chandak", position: "co-head" as const, role: "Photography Co-Head", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop", domain: "photography" as const, year: "2025-26" as const },
+    { 
+      id: "ch18", 
+      name: "Bhargav Lende", 
+      position: "co-head" as const, 
+      role: "Photography Co-Head", 
+      image: getImageUrl("Bhargav"),
+      domain: "photography" as const, 
+      year: "2025-26" as const 
+    },
+    { 
+      id: "ch19", 
+      name: "Uday Chandak", 
+      position: "co-head" as const, 
+      role: "Photography Co-Head", 
+      image: getImageUrl("Uday"),
+      domain: "photography" as const, 
+      year: "2025-26" as const 
+    },
     
     // Sports
-    { id: "ch20", name: "Anushka Chavan", position: "co-head" as const, role: "Sports Co-Head", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop", domain: "sports" as const, year: "2025-26" as const },
-    { id: "ch21", name: "Tanmay Gaikwad", position: "co-head" as const, role: "Sports Co-Head", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop", domain: "sports" as const, year: "2025-26" as const },
+    { 
+      id: "ch20", 
+      name: "Anushka Chavan", 
+      position: "co-head" as const, 
+      role: "Sports Co-Head", 
+      image: getImageUrl("Anushka"),
+      domain: "sports" as const, 
+      year: "2025-26" as const 
+    },
+    { 
+      id: "ch21", 
+      name: "Tanmay Gaikwad", 
+      position: "co-head" as const, 
+      role: "Sports Co-Head", 
+      image: getImageUrl("Tanmay"),
+      domain: "sports" as const, 
+      year: "2025-26" as const 
+    },
     
     // Resource
-    { id: "ch22", name: "Samarth Zawar", position: "co-head" as const, role: "Resource Co-Head", image: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=400&h=400&fit=crop", domain: "resource" as const, year: "2025-26" as const },
-    { id: "ch23", name: "Pranav Tapdiya", position: "co-head" as const, role: "Resource Co-Head", image: "https://images.unsplash.com/photo-1463453091185-61582044d556?w=400&h=400&fit=crop", domain: "resource" as const, year: "2025-26" as const },
+    { 
+      id: "ch22", 
+      name: "Samarth Zawar", 
+      position: "co-head" as const, 
+      role: "Resource Co-Head", 
+      image: getImageUrl("Samarth"),
+      domain: "resource" as const, 
+      year: "2025-26" as const 
+    },
+    { 
+      id: "ch23", 
+      name: "Pranav Tapdiya", 
+      position: "co-head" as const, 
+      role: "Resource Co-Head", 
+      image: getImageUrl("Pranav Tapdiya"),
+      domain: "resource" as const, 
+      year: "2025-26" as const 
+    },
     
     // Venue
-    { id: "ch24", name: "Piyush Chhagani", position: "co-head" as const, role: "Venue Incharge", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop", domain: "venue" as const, year: "2025-26" as const },
-    { id: "ch25", name: "Aditya Pandey", position: "co-head" as const, role: "Venue Incharge", image: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=400&h=400&fit=crop", domain: "venue" as const, year: "2025-26" as const },
+    { 
+      id: "ch24", 
+      name: "Piyush Chhagani", 
+      position: "co-head" as const, 
+      role: "Venue Incharge", 
+      image: getImageUrl("piyush ch"),
+      domain: "venue" as const, 
+      year: "2025-26" as const 
+    },
+    { 
+      id: "ch25", 
+      name: "Aditya Pandey", 
+      position: "co-head" as const, 
+      role: "Venue Incharge", 
+      image: getImageUrl("Aditya P"),
+      domain: "venue" as const, 
+      year: "2025-26" as const 
+    },
     
     // Content & Outreach
-    { id: "ch26", name: "Priyal Khandelwal", position: "co-head" as const, role: "Content & Outreach Incharge", image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop", domain: "content" as const, year: "2025-26" as const },
-    { id: "ch27", name: "Anagha Bhattad", position: "co-head" as const, role: "Content & Outreach Incharge", image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400&h=400&fit=crop", domain: "content" as const, year: "2025-26" as const },
+    { 
+      id: "ch26", 
+      name: "Priyal Khandelwal", 
+      position: "co-head" as const, 
+      role: "Content & Outreach Incharge", 
+      image: getImageUrl("Priyal"),
+      domain: "content" as const, 
+      year: "2025-26" as const 
+    },
+    { 
+      id: "ch27", 
+      name: "Anagha Bhattad", 
+      position: "co-head" as const, 
+      role: "Content & Outreach Incharge", 
+      image: getImageUrl("Anagha"),
+      domain: "content" as const, 
+      year: "2025-26" as const 
+    },
   ];
 
   const filteredBySearch = searchQuery.trim()
