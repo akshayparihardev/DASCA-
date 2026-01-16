@@ -11,7 +11,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
-  // EXACT SAME theme configuration from friend's code
   const themes = {
     light: {
       background: "#ffffff",
@@ -20,7 +19,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
       pulseColor: "#2563EB",
       textMain: "text-gray-900",
       textSub: "text-gray-600",
-      gradient: "from-blue-600 to-purple-600",  // Changed from gray-900 to purple for arts/culture vibe
+      gradient: "from-blue-600 to-purple-600",
       overlay: "from-white/60 via-transparent to-white/90",
     },
     dark: {
@@ -37,13 +36,12 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
 
   const currentTheme = isDarkMode ? themes.dark : themes.light;
 
-  // EXACT SAME Canvas Logic from friend's code
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-    
+
     let animationFrameId: number;
     let w: number, h: number;
     let particles: any[] = [];
@@ -221,59 +219,123 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
     };
   }, [isDarkMode, currentTheme]);
 
-  // EXACT SAME Render from friend's code
   return (
     <div
       className={`relative w-full h-screen overflow-hidden flex flex-col items-center justify-center transition-colors duration-500 ${
         isDarkMode ? "bg-[#030712]" : "bg-white"
       }`}
     >
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 w-full h-full z-0"
-      />
+      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-0" />
 
       <div
         className={`absolute inset-0 z-0 pointer-events-none bg-gradient-to-b ${currentTheme.overlay}`}
       />
 
-      {/* Content - Updated for DASCA (Arts/Sports/Culture) */}
-      <div className="relative z-10 text-center px-6">
+      {/* 💎 MATURE, PROFESSIONAL CONTENT - EXACT SAME WORDING */}
+      <div className="relative z-10 text-center px-6 max-w-7xl mx-auto">
+        
+        {/* Main Headline - SOPHISTICATED TYPOGRAPHY */}
         <h1
-          className={`text-5xl md:text-7xl font-extrabold mb-6 ${currentTheme.textMain}`}
+          className={`text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-black mb-6 tracking-tight leading-[1.1] ${currentTheme.textMain}`}
+          style={{
+            fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+            letterSpacing: "-0.025em",
+            textRendering: "optimizeLegibility",
+            WebkitFontSmoothing: "antialiased",
+            MozOsxFontSmoothing: "grayscale"
+          }}
         >
-          Where Passion Meets <br />
+          Where Passion Meets
+          <br />
           <span
-            className={`text-transparent bg-clip-text bg-gradient-to-r ${currentTheme.gradient}`}
+            className={`text-transparent bg-clip-text bg-gradient-to-r ${currentTheme.gradient} animate-gradient-shift`}
+            style={{
+              display: "inline-block",
+              backgroundSize: "200% auto"
+            }}
           >
             Purpose
           </span>
         </h1>
 
+        {/* Subtitle - REFINED & ELEGANT */}
         <p
-          className={`max-w-2xl mx-auto mb-10 text-lg ${currentTheme.textSub}`}
+          className={`text-lg sm:text-xl md:text-2xl font-light mb-12 leading-relaxed ${currentTheme.textSub}`}
+          style={{
+            fontFamily: "'Inter', sans-serif",
+            maxWidth: "45rem",
+            margin: "0 auto 3.5rem auto",
+            fontWeight: 300,
+            lineHeight: 1.65
+          }}
         >
-          Welcome to <b>DASCA</b> — The heartbeat of campus culture, 
-          arts, sports, and unforgettable experiences.
+          Welcome to <span className={`font-semibold ${currentTheme.textMain}`}>DASCA</span> — The official Data Science Association of
+          Ramdeobaba University.
         </p>
 
+        {/* CTA Button - SOPHISTICATED DESIGN */}
         <button
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="px-8 py-4 bg-blue-600 text-white rounded-full flex items-center gap-3 mx-auto hover:bg-blue-700 transition-colors"
+          className="group relative px-10 py-5 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-lg font-semibold rounded-full shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] inline-flex items-center gap-3 overflow-hidden"
+          style={{
+            fontFamily: "'Inter', sans-serif",
+            letterSpacing: "0.01em"
+          }}
         >
-          Explore DASCA
+          {/* Subtle hover gradient shift */}
+          <div 
+            className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          />
+          
+          <span className="relative z-10">Explore DASCA</span>
           <ArrowRight
-            className={`transition-transform ${
+            className={`relative z-10 transition-transform duration-300 ${
               isHovered ? "translate-x-1" : ""
             }`}
+            size={20}
+            strokeWidth={2.5}
           />
         </button>
       </div>
 
-      <div className="absolute bottom-10 animate-bounce z-10">
-        <ChevronDown className="text-gray-400" />
+      {/* Scroll Indicator - MINIMAL & REFINED */}
+      <div className="absolute bottom-10 animate-bounce-gentle z-10 opacity-40 hover:opacity-100 transition-opacity duration-300">
+        <ChevronDown 
+          className={currentTheme.textSub} 
+          size={32} 
+          strokeWidth={1.5} 
+        />
       </div>
+
+      {/* Smooth Animations */}
+      <style jsx>{`
+        @keyframes gradient-shift {
+          0%, 100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+        }
+
+        @keyframes bounce-gentle {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-8px);
+          }
+        }
+
+        .animate-gradient-shift {
+          animation: gradient-shift 3s ease-in-out infinite;
+        }
+
+        .animate-bounce-gentle {
+          animation: bounce-gentle 2.5s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 };

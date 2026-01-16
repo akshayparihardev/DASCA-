@@ -36,14 +36,15 @@ const Navbar = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const savedTheme = localStorage.getItem('theme');
+      const isDark = savedTheme === 'dark';
       
-      if (savedTheme === 'dark') {
-        setIsDarkMode(true);
-        document.documentElement.classList.add('dark-mode');
+      setIsDarkMode(isDark);
+      
+      if (isDark) {
+        document.documentElement.classList.add('dark');
         document.body.classList.add('dark-mode');
       } else {
-        setIsDarkMode(false);
-        document.documentElement.classList.remove('dark-mode');
+        document.documentElement.classList.remove('dark');
         document.body.classList.remove('dark-mode');
       }
     }
@@ -55,19 +56,14 @@ const Navbar = () => {
     setIsDarkMode(newMode);
     
     if (newMode) {
-      document.documentElement.classList.add('dark-mode');
+      document.documentElement.classList.add('dark');
       document.body.classList.add('dark-mode');
       localStorage.setItem('theme', 'dark');
     } else {
-      document.documentElement.classList.remove('dark-mode');
+      document.documentElement.classList.remove('dark');
       document.body.classList.remove('dark-mode');
       localStorage.setItem('theme', 'light');
     }
-    
-    // Force repaint
-    document.body.style.display = 'none';
-    document.body.offsetHeight;
-    document.body.style.display = '';
   };
 
   // Toggle drawer
@@ -92,23 +88,27 @@ const Navbar = () => {
         className="fixed top-0 left-0 w-full z-[1000] transition-all duration-500"
         style={{ 
           height: isScrolled ? '85px' : '110px',
-          // PERFECT BLEND - No visible strip!
+          
+          // Always visible background
           background: isScrolled 
             ? (isDarkMode 
-                ? 'rgba(10, 10, 10, 0.85)'  // Match your dark hero bg
-                : 'rgba(250, 250, 250, 0.85)') // Match your light hero bg
-            : 'transparent', // Fully transparent when at top
-          backdropFilter: isScrolled ? 'blur(20px)' : 'blur(0px)',
-          WebkitBackdropFilter: isScrolled ? 'blur(20px)' : 'blur(0px)',
-          // NO BORDER when not scrolled
+                ? 'rgba(2, 6, 23, 0.95)'
+                : 'rgba(255, 255, 255, 0.95)') 
+            : (isDarkMode 
+                ? 'rgba(2, 6, 23, 0.75)'
+                : 'rgba(255, 255, 255, 0.5)'),
+          
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          
           borderBottom: isScrolled 
-            ? (isDarkMode ? '1px solid rgba(255, 255, 255, 0.05)' : '1px solid rgba(0, 0, 0, 0.05)')
-            : 'none'
+            ? `1px solid ${isDarkMode ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)'}`
+            : (isDarkMode ? '1px solid rgba(255, 255, 255, 0.05)' : 'none')
         }}
       >
         <div className="max-w-[1400px] mx-auto px-6 sm:px-10 h-full flex items-center justify-between">
           
-          {/* Logo - PROFESSIONAL & BIG */}
+          {/* Logo - ORIGINAL APPEARANCE */}
           <Link 
             href="/" 
             className="z-[1002] relative transition-all duration-500 hover:scale-105 active:scale-95"
@@ -124,10 +124,10 @@ const Navbar = () => {
                 height: isScrolled ? '65px' : '85px',
                 maxWidth: isScrolled ? '240px' : '320px',
                 
-                // Dark mode: Super bright & visible
+                // Keep logo ORIGINAL - Just subtle glow in dark mode
                 filter: isDarkMode 
-                  ? 'brightness(2.5) contrast(1.15) saturate(1.1) drop-shadow(0 0 35px rgba(139, 92, 246, 0.6))' 
-                  : 'brightness(1) contrast(1.05) drop-shadow(0 4px 20px rgba(0, 0, 0, 0.12))',
+                  ? 'drop-shadow(0 0 30px rgba(139, 92, 246, 0.4)) drop-shadow(0 0 15px rgba(45, 212, 191, 0.2))' 
+                  : 'drop-shadow(0 4px 20px rgba(0, 0, 0, 0.1))',
                 
                 opacity: 1
               }}
@@ -136,25 +136,50 @@ const Navbar = () => {
           </Link>
 
           {/* Theme Toggle + Menu */}
-          <div className="flex items-center gap-4 sm:gap-6">
+          <div className="flex items-center gap-4 sm:gap-6 z-[1002]">
             
-            {/* Theme Toggle */}
+            {/* Theme Toggle Button - FIXED STYLING */}
             <button 
               onClick={toggleTheme}
-              className="p-3 rounded-full transition-all duration-500 group relative"
+              className="p-3 rounded-full transition-all duration-300 group relative hover:scale-110 active:scale-95"
               aria-label="Toggle Theme"
               style={{
+                // 🎯 FIXED: Better light mode background
                 background: isDarkMode 
-                  ? 'rgba(255, 255, 255, 0.06)' 
-                  : 'rgba(0, 0, 0, 0.04)',
-                backdropFilter: 'blur(10px)'
+                  ? 'rgba(255, 255, 255, 0.1)' 
+                  : 'rgba(100, 116, 139, 0.08)', // Subtle grey-blue tint
+                
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
+                
+                // Better shadows
+                boxShadow: isDarkMode 
+                  ? '0 0 20px rgba(139, 92, 246, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.08)' 
+                  : '0 2px 8px rgba(0, 0, 0, 0.06), inset 0 0 0 1px rgba(0, 0, 0, 0.04)',
+                
+                // Smooth hover transition
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+              }}
+              onMouseEnter={(e) => {
+                // Hover effect
+                e.currentTarget.style.background = isDarkMode 
+                  ? 'rgba(255, 255, 255, 0.15)' 
+                  : 'rgba(100, 116, 139, 0.12)';
+              }}
+              onMouseLeave={(e) => {
+                // Reset to default
+                e.currentTarget.style.background = isDarkMode 
+                  ? 'rgba(255, 255, 255, 0.1)' 
+                  : 'rgba(100, 116, 139, 0.08)';
               }}
             >
               <i 
-                className={`${isDarkMode ? 'ri-sun-line' : 'ri-moon-line'} text-[26px] sm:text-[28px] transition-all duration-500 group-hover:scale-110 group-hover:rotate-[15deg] group-active:scale-90 group-active:rotate-180`}
+                className={`${isDarkMode ? 'ri-sun-line' : 'ri-moon-line'} text-[26px] sm:text-[28px] transition-all duration-500 group-hover:rotate-[25deg]`}
                 style={{ 
-                  color: isDarkMode ? '#FFFFFF' : '#1E293B',
-                  filter: isDarkMode ? 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.5))' : 'none'
+                  color: isDarkMode ? '#FFFFFF' : '#334155', // Darker icon in light mode
+                  filter: isDarkMode 
+                    ? 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.5))' 
+                    : 'none'
                 }}
               />
             </button>
@@ -162,38 +187,48 @@ const Navbar = () => {
             {/* Hamburger Menu */}
             <button 
               onClick={toggleDrawer}
-              className="flex flex-col justify-between w-[36px] sm:w-[38px] h-5 cursor-pointer z-[1002] group"
+              className="flex flex-col justify-between w-[36px] sm:w-[38px] h-5 cursor-pointer group"
               aria-label="Toggle Menu"
             >
+              {/* Top bar */}
               <div 
-                className={`w-full h-[2.5px] rounded-sm transition-all duration-[400ms]`}
+                className="w-full h-[2.5px] rounded-sm transition-all duration-[400ms]"
                 style={{ 
                   transitionTimingFunction: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
                   transform: isDrawerOpen ? 'translateY(9px) rotate(45deg)' : 'none',
-                  background: isDrawerOpen 
-                    ? 'var(--text-primary)' 
-                    : (isDarkMode ? '#FFFFFF' : '#1E293B'),
-                  filter: isDarkMode && !isDrawerOpen ? 'drop-shadow(0 0 6px rgba(255, 255, 255, 0.4))' : 'none'
+                  
+                  background: isDarkMode ? '#FFFFFF' : '#1E293B',
+                  filter: isDarkMode 
+                    ? 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.7)) drop-shadow(0 0 20px rgba(139, 92, 246, 0.5))' 
+                    : 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1))'
                 }}
               />
+              
+              {/* Middle bar */}
               <div 
-                className={`w-full h-[2.5px] rounded-sm transition-all duration-[400ms]`}
+                className="w-full h-[2.5px] rounded-sm transition-all duration-[400ms]"
                 style={{ 
                   transitionTimingFunction: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
                   opacity: isDrawerOpen ? 0 : 1,
+                  
                   background: isDarkMode ? '#FFFFFF' : '#1E293B',
-                  filter: isDarkMode ? 'drop-shadow(0 0 6px rgba(255, 255, 255, 0.4))' : 'none'
+                  filter: isDarkMode 
+                    ? 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.7)) drop-shadow(0 0 20px rgba(139, 92, 246, 0.5))' 
+                    : 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1))'
                 }}
               />
+              
+              {/* Bottom bar */}
               <div 
-                className={`w-full h-[2.5px] rounded-sm transition-all duration-[400ms]`}
+                className="w-full h-[2.5px] rounded-sm transition-all duration-[400ms]"
                 style={{ 
                   transitionTimingFunction: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
                   transform: isDrawerOpen ? 'translateY(-9px) rotate(-45deg)' : 'none',
-                  background: isDrawerOpen 
-                    ? 'var(--text-primary)' 
-                    : (isDarkMode ? '#FFFFFF' : '#1E293B'),
-                  filter: isDarkMode && !isDrawerOpen ? 'drop-shadow(0 0 6px rgba(255, 255, 255, 0.4))' : 'none'
+                  
+                  background: isDarkMode ? '#FFFFFF' : '#1E293B',
+                  filter: isDarkMode 
+                    ? 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.7)) drop-shadow(0 0 20px rgba(139, 92, 246, 0.5))' 
+                    : 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1))'
                 }}
               />
             </button>
@@ -213,11 +248,23 @@ const Navbar = () => {
         `}
         style={{
           width: 'min(450px, 90vw)',
-          background: isDarkMode ? 'rgba(15, 23, 42, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+          
+          background: isDarkMode 
+            ? 'rgba(2, 6, 23, 0.98)'
+            : 'rgba(255, 255, 255, 0.98)',
+          
           backdropFilter: 'blur(30px)',
           WebkitBackdropFilter: 'blur(30px)',
-          borderLeft: isDarkMode ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.05)',
-          transitionTimingFunction: 'cubic-bezier(0.7, 0, 0.2, 1)'
+          
+          borderLeft: isDarkMode 
+            ? '1px solid rgba(255, 255, 255, 0.1)' 
+            : '1px solid rgba(0, 0, 0, 0.08)',
+          
+          transitionTimingFunction: 'cubic-bezier(0.7, 0, 0.2, 1)',
+          
+          boxShadow: isDarkMode 
+            ? '-5px 0 40px rgba(139, 92, 246, 0.25)' 
+            : '-5px 0 30px rgba(0, 0, 0, 0.08)'
         }}
       >
         
@@ -236,12 +283,15 @@ const Navbar = () => {
               style={{ 
                 fontSize: 'clamp(2rem, 5vw, 2.5rem)',
                 animationDelay: `${0.1 * (index + 1)}s`,
-                color: 'var(--drawer-text)'
+                color: isDarkMode ? '#FFFFFF' : '#000000'
               }}
             >
               <span 
-                className="absolute left-5 lg:relative lg:left-auto text-sm font-normal opacity-30 lg:mr-4 transition-all duration-300 group-hover/link:opacity-100 group-hover/link:text-blue-500"
-                style={{ color: 'var(--text-secondary)' }}
+                className="absolute left-5 lg:relative lg:left-auto text-sm font-normal lg:mr-4 transition-all duration-300 group-hover/link:opacity-100 group-hover/link:text-blue-500"
+                style={{ 
+                  color: isDarkMode ? '#9CA3AF' : '#6B7280',
+                  opacity: 0.4
+                }}
               >
                 0{index + 1}
               </span>
@@ -251,7 +301,15 @@ const Navbar = () => {
                 style={{ transitionTimingFunction: 'cubic-bezier(0.5, 0, 0, 1)' }}
               >
                 {link.name}
-                <span className="absolute top-full left-0 w-full text-blue-500">
+                <span 
+                  className="absolute top-full left-0 w-full"
+                  style={{ 
+                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text'
+                  }}
+                >
                   {link.name}
                 </span>
               </span>
@@ -266,11 +324,14 @@ const Navbar = () => {
         <div 
           className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[999] transition-opacity duration-300"
           onClick={handleLinkClick}
-          style={{ backdropFilter: 'blur(4px)', WebkitBackdropFilter: 'blur(4px)' }}
+          style={{ 
+            backdropFilter: 'blur(4px)', 
+            WebkitBackdropFilter: 'blur(4px)' 
+          }}
         />
       )}
 
-      {/* Mobile Animation */}
+      {/* Animations */}
       <style jsx global>{`
         @media (max-width: 1024px) {
           @keyframes mobileRollWave {

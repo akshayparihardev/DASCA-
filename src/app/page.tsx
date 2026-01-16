@@ -9,9 +9,22 @@ import PremiumReelSection from '../components/home/PremiumReelSection';
 import { Sparkles, TrendingUp, Users, Zap, ArrowRight } from 'lucide-react';
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
+  // 🔥 VERY IMPORTANT
+  // default false, taaki animation control me rahe
+  const [isLoading, setIsLoading] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
+  // ✅ PRELOADER ONLY ON REAL PAGE RELOAD
+  useEffect(() => {
+    const hasLoaded = sessionStorage.getItem('hasLoaded');
+
+    if (!hasLoaded) {
+      setIsLoading(true);
+      sessionStorage.setItem('hasLoaded', 'true');
+    }
+  }, []);
+
+  // Dark mode observer (unchanged)
   useEffect(() => {
     const checkDarkMode = () => {
       setIsDarkMode(document.body.classList.contains('dark-mode'));
@@ -19,7 +32,10 @@ export default function Home() {
 
     checkDarkMode();
     const observer = new MutationObserver(checkDarkMode);
-    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
 
     return () => observer.disconnect();
   }, []);
@@ -37,47 +53,58 @@ export default function Home() {
     { value: '50+', label: 'Events Annually', icon: Sparkles },
     { value: '2000+', label: 'Active Students', icon: Users },
     { value: '100+', label: 'Committee Members', icon: TrendingUp },
-    { value: '5+', label: 'Years of Excellence', icon: Zap }
+    { value: '5+', label: 'Years of Excellence', icon: Zap },
   ];
 
   const activities = [
     {
       title: 'Cultural Festivals',
-      description: 'From traditional celebrations to modern performances — celebrating diversity through art',
-      image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80',
-      color: 'from-violet-600 to-fuchsia-600'
+      description:
+        'From traditional celebrations to modern performances — celebrating diversity through art',
+      image:
+        'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80',
+      color: 'from-violet-600 to-fuchsia-600',
     },
     {
       title: 'Sports Championships',
-      description: 'Building champions across all disciplines — where teamwork meets competition',
-      image: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&q=80',
-      color: 'from-blue-600 to-cyan-600'
+      description:
+        'Building champions across all disciplines — where teamwork meets competition',
+      image:
+        'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&q=80',
+      color: 'from-blue-600 to-cyan-600',
     },
     {
       title: 'Skill Workshops',
-      description: 'Personal growth through expert-led sessions, masterclasses, and hands-on learning',
-      image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80',
-      color: 'from-orange-600 to-pink-600'
-    }
+      description:
+        'Personal growth through expert-led sessions, masterclasses, and hands-on learning',
+      image:
+        'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80',
+      color: 'from-orange-600 to-pink-600',
+    },
   ];
 
   const testimonials = [
     {
-      quote: "DASCA transformed me from a shy fresher into someone who can confidently organize fests for 1000+ people. Best decision ever.",
-      author: "Rohan Sharma",
-      year: "3rd Year",
-      image: "https://ui-avatars.com/api/?name=Rohan+Sharma&background=667eea&color=fff&size=128"
+      quote:
+        'DASCA transformed me from a shy fresher into someone who can confidently organize fests for 1000+ people. Best decision ever.',
+      author: 'Rohan Sharma',
+      year: '3rd Year',
+      image:
+        'https://ui-avatars.com/api/?name=Rohan+Sharma&background=667eea&color=fff&size=128',
     },
     {
-      quote: "Made lifelong friends and discovered my passion for event management. DASCA isn't just a committee — it's a family.",
-      author: "Priya Singh",
-      year: "Final Year",
-      image: "https://ui-avatars.com/api/?name=Priya+Singh&background=764ba2&color=fff&size=128"
-    }
+      quote:
+        "Made lifelong friends and discovered my passion for event management. DASCA isn't just a committee — it's a family.",
+      author: 'Priya Singh',
+      year: 'Final Year',
+      image:
+        'https://ui-avatars.com/api/?name=Priya+Singh&background=764ba2&color=fff&size=128',
+    },
   ];
 
   return (
     <>
+      {/* 🔥 WORDS PRELOADER — ONLY ON PAGE RELOAD */}
       <AnimatePresence mode="wait">
         {isLoading && (
           <WordsPreloader finishLoading={() => setIsLoading(false)} />
@@ -112,12 +139,12 @@ export default function Home() {
                 className="text-xl md:text-2xl font-light leading-relaxed"
                 style={{ color: theme.textSub }}
               >
-                Every festival, tournament, and workshop is designed to bring our campus alive with energy, creativity, and connection.
+                Every festival, tournament, and workshop is designed to bring our
+                campus alive with energy, creativity, and connection.
               </p>
             </motion.div>
 
-            {/* Activities Grid */}
-            <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-12 max-w-7xl mx-auto">
               {activities.map((activity, idx) => (
                 <motion.div
                   key={idx}
@@ -125,36 +152,47 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: idx * 0.15 }}
                   viewport={{ once: true }}
-                  className="group relative overflow-hidden rounded-3xl"
-                  style={{ backgroundColor: theme.cardBg }}
+                  className="group relative"
+                  style={{ padding: '4px' }}
                 >
-                  <div className="relative h-64 overflow-hidden">
-                    <img
-                      src={activity.image}
-                      alt={activity.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className={`absolute inset-0 bg-gradient-to-t ${activity.color} opacity-60 mix-blend-multiply`} />
-                  </div>
-
-                  <div className="p-8">
-                    <h3
-                      className="text-2xl font-black mb-3 tracking-tight"
-                      style={{ color: theme.text }}
-                    >
-                      {activity.title}
-                    </h3>
-                    <p
-                      className="leading-relaxed"
-                      style={{ color: theme.textSub }}
-                    >
-                      {activity.description}
-                    </p>
-                  </div>
+                  <div
+                    className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-75 transition-opacity duration-700 bg-gradient-to-r ${activity.color}`}
+                    style={{
+                      filter: 'blur(20px)',
+                      transform: 'scale(1.05)',
+                    }}
+                  />
 
                   <div
-                    className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-xl bg-gradient-to-r ${activity.color}`}
-                  />
+                    className="relative rounded-3xl overflow-hidden"
+                    style={{ backgroundColor: theme.cardBg }}
+                  >
+                    <div className="relative h-64 overflow-hidden">
+                      <img
+                        src={activity.image}
+                        alt={activity.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      />
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-t ${activity.color} opacity-60 mix-blend-multiply`}
+                      />
+                    </div>
+
+                    <div className="p-8">
+                      <h3
+                        className="text-2xl font-black mb-3 tracking-tight"
+                        style={{ color: theme.text }}
+                      >
+                        {activity.title}
+                      </h3>
+                      <p
+                        className="leading-relaxed"
+                        style={{ color: theme.textSub }}
+                      >
+                        {activity.description}
+                      </p>
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -199,7 +237,7 @@ export default function Home() {
                   className="text-center p-8 rounded-3xl"
                   style={{
                     backgroundColor: theme.cardBg,
-                    border: `1px solid ${theme.border}`
+                    border: `1px solid ${theme.border}`,
                   }}
                 >
                   <stat.icon
@@ -207,9 +245,7 @@ export default function Home() {
                     className="mx-auto mb-6"
                     style={{ color: theme.accent }}
                   />
-                  <div
-                    className="text-5xl md:text-6xl font-black mb-3 bg-gradient-to-r from-violet-500 to-fuchsia-500 bg-clip-text text-transparent"
-                  >
+                  <div className="text-5xl md:text-6xl font-black mb-3 bg-gradient-to-r from-violet-500 to-fuchsia-500 bg-clip-text text-transparent">
                     {stat.value}
                   </div>
                   <div
@@ -252,7 +288,7 @@ export default function Home() {
             </motion.div>
 
             <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {testimonials.map((testimonial, idx) => (
+              {testimonials.map((t, idx) => (
                 <motion.div
                   key={idx}
                   initial={{ opacity: 0, y: 30 }}
@@ -262,7 +298,7 @@ export default function Home() {
                   className="p-10 rounded-3xl relative"
                   style={{
                     backgroundColor: theme.bg,
-                    border: `1px solid ${theme.border}`
+                    border: `1px solid ${theme.border}`,
                   }}
                 >
                   <div
@@ -272,33 +308,31 @@ export default function Home() {
                     "
                   </div>
 
-                  <div className="relative">
-                    <p
-                      className="text-lg mb-8 italic leading-relaxed"
-                      style={{ color: theme.text }}
-                    >
-                      "{testimonial.quote}"
-                    </p>
+                  <p
+                    className="text-lg mb-8 italic leading-relaxed"
+                    style={{ color: theme.text }}
+                  >
+                    "{t.quote}"
+                  </p>
 
-                    <div className="flex items-center gap-4">
-                      <img
-                        src={testimonial.image}
-                        alt={testimonial.author}
-                        className="w-14 h-14 rounded-full"
-                      />
-                      <div>
-                        <div
-                          className="font-bold text-lg"
-                          style={{ color: theme.text }}
-                        >
-                          {testimonial.author}
-                        </div>
-                        <div
-                          className="text-sm"
-                          style={{ color: theme.textSub }}
-                        >
-                          {testimonial.year}
-                        </div>
+                  <div className="flex items-center gap-4">
+                    <img
+                      src={t.image}
+                      alt={t.author}
+                      className="w-14 h-14 rounded-full"
+                    />
+                    <div>
+                      <div
+                        className="font-bold text-lg"
+                        style={{ color: theme.text }}
+                      >
+                        {t.author}
+                      </div>
+                      <div
+                        className="text-sm"
+                        style={{ color: theme.textSub }}
+                      >
+                        {t.year}
                       </div>
                     </div>
                   </div>
@@ -308,29 +342,20 @@ export default function Home() {
           </div>
         </section>
 
-        {/* SECTION 6: CURVED LOOP - BRAND PROMISE */}
-        <section
-          className="relative py-20"
-          style={{
-            backgroundColor: theme.bg  // Now uses #FAFAFA in light mode, #0A0A0A in dark mode
-          }}
-        >
+        {/* SECTION 6: CURVED LOOP */}
+        <section className="relative py-20" style={{ backgroundColor: theme.bg }}>
           <CurvedLoop
-            // marqueeText="DASCA DOESN'T DISAPPOINTS ✦ "
             marqueeText="DASCA  DOESN'T  DISAPPOINTS ✦ "
             speed={3}
             curveAmount={350}
             direction="right"
-            interactive={true}
+            interactive
             className={isDarkMode ? 'fill-white' : 'fill-gray-900'}
           />
         </section>
 
         {/* SECTION 7: FINAL CTA */}
-        <section
-          className="relative py-32"
-          style={{ backgroundColor: theme.bg }}
-        >
+        <section className="relative py-32" style={{ backgroundColor: theme.bg }}>
           <div className="container mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -349,8 +374,9 @@ export default function Home() {
                   Something Extraordinary?
                 </span>
               </h2>
+
               <p
-                className="text-xl md:text-2xl font-light mb-12 max-w-2xl mx-auto"
+                className="text-xl md:text-2xl font-light mb-12"
                 style={{ color: theme.textSub }}
               >
                 Join DASCA and create memories that will last a lifetime
@@ -360,22 +386,21 @@ export default function Home() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="group px-10 py-5 rounded-full font-bold text-lg text-white bg-gradient-to-r from-violet-600 to-fuchsia-600 shadow-xl hover:shadow-2xl transition-all relative overflow-hidden"
+                  className="group px-10 py-5 rounded-full font-bold text-lg text-white bg-gradient-to-r from-violet-600 to-fuchsia-600 shadow-xl hover:shadow-2xl transition-all"
                 >
-                  <span className="relative z-10 flex items-center gap-3 justify-center">
+                  <span className="flex items-center gap-3">
                     Explore Upcoming Events
-                    <ArrowRight className="group-hover:translate-x-2 transition-transform" />
+                    <ArrowRight />
                   </span>
                 </motion.button>
 
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-10 py-5 rounded-full font-bold text-lg border-2 transition-all"
+                  className="px-10 py-5 rounded-full font-bold text-lg border-2"
                   style={{
                     borderColor: theme.text,
                     color: theme.text,
-                    backgroundColor: 'transparent'
                   }}
                 >
                   Join Our Team

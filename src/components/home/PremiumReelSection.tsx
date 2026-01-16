@@ -3,243 +3,272 @@
 import { useState, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Play, Pause, Volume2, VolumeX, Maximize2, X } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 interface PremiumReelSectionProps {
   isDarkMode: boolean;
 }
 
 const PremiumReelSection: React.FC<PremiumReelSectionProps> = ({ isDarkMode }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const router = useRouter();
   const sectionRef = useRef<HTMLDivElement>(null);
 
+  /* ---------------- STATES ---------------- */
+  const [isPlaying2026, setIsPlaying2026] = useState(false);
+  const [isPlaying2025, setIsPlaying2025] = useState(false);
+  const [isMuted2026, setIsMuted2026] = useState(true);
+  const [isMuted2025, setIsMuted2025] = useState(true);
+  const [fullscreenVideo, setFullscreenVideo] =
+    useState<'2026' | '2025' | null>(null);
+
+  const video2026Ref = useRef<HTMLVideoElement>(null);
+  const video2025Ref = useRef<HTMLVideoElement>(null);
+
+  /* ---------------- SCROLL EFFECT ---------------- */
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "end start"]
+    offset: ['start end', 'end start'],
   });
 
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.8]);
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.9, 1, 0.9]);
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
-
-  const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !isMuted;
-      setIsMuted(!isMuted);
-    }
-  };
-
-  const toggleFullscreen = () => {
-    setIsFullscreen(!isFullscreen);
-  };
-
+  /* ---------------- THEME ---------------- */
   const theme = {
     bg: isDarkMode ? '#0A0A0A' : '#FAFAFA',
     text: isDarkMode ? '#F8FAFC' : '#0F172A',
     textSub: isDarkMode ? '#94A3B8' : '#475569',
-    accent: isDarkMode ? '#8B5CF6' : '#6366F1',
   };
+
+  /* ---------------- EXCLUSIVE PLAYBACK ---------------- */
+  const play2026 = () => {
+    if (!video2026Ref.current || !video2025Ref.current) return;
+
+    video2025Ref.current.pause();
+    setIsPlaying2025(false);
+
+    video2026Ref.current.play();
+    setIsPlaying2026(true);
+  };
+
+  const pause2026 = () => {
+    video2026Ref.current?.pause();
+    setIsPlaying2026(false);
+  };
+
+  const play2025 = () => {
+    if (!video2025Ref.current || !video2026Ref.current) return;
+
+    video2026Ref.current.pause();
+    setIsPlaying2026(false);
+
+    video2025Ref.current.play();
+    setIsPlaying2025(true);
+  };
+
+  const pause2025 = () => {
+    video2025Ref.current?.pause();
+    setIsPlaying2025(false);
+  };
+
+  const toggleMute2026 = () => {
+    if (!video2026Ref.current) return;
+    video2026Ref.current.muted = !isMuted2026;
+    setIsMuted2026(!isMuted2026);
+  };
+
+  const toggleMute2025 = () => {
+    if (!video2025Ref.current) return;
+    video2025Ref.current.muted = !isMuted2025;
+    setIsMuted2025(!isMuted2025);
+  };
+
+  const handleViewCommittee = () => {
+    router.push('/committee#carousel');
+  };
+
+  /* ---------------- VIDEO PLAYER ---------------- */
+  const VideoPlayer = ({
+    year,
+    videoRef,
+    isPlaying,
+    isMuted,
+    onPlay,
+    onPause,
+    onMute,
+    openFullscreen,
+  }: {
+    year: '2026' | '2025';
+    videoRef: React.RefObject<HTMLVideoElement>;
+    isPlaying: boolean;
+    isMuted: boolean;
+    onPlay: () => void;
+    onPause: () => void;
+    onMute: () => void;
+    openFullscreen: () => void;
+  }) => (
+    <div className="relative group">
+      <div className="relative aspect-video rounded-[32px] overflow-hidden
+        bg-black shadow-[0_30px_80px_-20px_rgba(0,0,0,0.8)]
+        ring-1 ring-white/10">
+
+        <video
+          ref={videoRef}
+          className="w-full h-full object-cover"
+          loop
+          muted={isMuted}
+          playsInline
+        >
+          <source src={`/committee-reel-${year}.mp4`} type="video/mp4" />
+        </video>
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+
+        {/* Center Play */}
+        {!isPlaying && (
+          <button
+            onClick={onPlay}
+            className="absolute inset-0 flex items-center justify-center z-10"
+          >
+            <div className="w-28 h-28 rounded-full
+              bg-white/10 backdrop-blur-xl
+              border border-white/30
+              flex items-center justify-center
+              shadow-2xl hover:scale-110 transition">
+              <Play size={40} className="text-white ml-2" fill="white" />
+            </div>
+          </button>
+        )}
+
+        {/* Controls */}
+        <div className="absolute bottom-0 left-0 right-0 p-6 flex justify-between
+          opacity-0 translate-y-4 group-hover:opacity-100
+          group-hover:translate-y-0 transition-all duration-300 z-20">
+
+          <div className="flex gap-3">
+            <button onClick={isPlaying ? onPause : onPlay} className="control-btn">
+              {isPlaying ? <Pause size={18} /> : <Play size={18} />}
+            </button>
+
+            <button onClick={onMute} className="control-btn">
+              {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+            </button>
+          </div>
+
+          <button onClick={openFullscreen} className="control-btn">
+            <Maximize2 size={18} />
+          </button>
+        </div>
+
+        {/* Badge */}
+        <div className="absolute top-5 left-5 px-4 py-2 rounded-full
+          bg-black/40 backdrop-blur-md border border-white/20
+          text-white text-sm font-semibold z-10">
+          Team {year}
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <>
-      <section 
+      <section
         ref={sectionRef}
         className="relative py-32 overflow-hidden"
-        style={{ backgroundColor: theme.bg }}
+        style={{ background: theme.bg }}
       >
         <div className="container mx-auto px-6">
-          {/* Section Header */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto text-center mb-20"
-          >
-            <span 
-              className="inline-block px-4 py-2 rounded-full text-sm font-semibold tracking-wider uppercase mb-6"
-              style={{ 
-                backgroundColor: isDarkMode ? 'rgba(139, 92, 246, 0.1)' : 'rgba(99, 102, 241, 0.1)',
-                color: theme.accent 
-              }}
-            >
-              Team 2024
-            </span>
-            <h2 
-              className="text-5xl md:text-7xl font-black mb-6 tracking-tight"
-              style={{ color: theme.text }}
-            >
-              Meet The Faces Behind
-              <br />
+
+          {/* HEADER */}
+          <div className="max-w-4xl mx-auto text-center mb-24">
+            <h2 className="text-5xl md:text-7xl font-black mb-6" style={{ color: theme.text }}>
+              Meet The Faces Behind <br />
               <span className="bg-gradient-to-r from-violet-500 to-fuchsia-500 bg-clip-text text-transparent">
                 The Magic
               </span>
             </h2>
-            <p 
-              className="text-xl md:text-2xl font-light max-w-2xl mx-auto"
-              style={{ color: theme.textSub }}
-            >
-              Every great event, every unforgettable moment — powered by passion and dedication
+            <p className="text-xl md:text-2xl" style={{ color: theme.textSub }}>
+              Every unforgettable moment is powered by passion and people
             </p>
-          </motion.div>
+          </div>
 
-          {/* Video Player */}
+          {/* VIDEOS */}
           <motion.div
             style={{ scale, opacity }}
-            className="max-w-7xl mx-auto"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 max-w-7xl mx-auto"
           >
-            <div className="relative group">
-              {/* Main Video Container */}
-              <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl">
-                <video
-                  ref={videoRef}
-                  className="w-full h-full object-cover"
-                  poster="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80"
-                  loop
-                  playsInline
-                >
-                  <source src="/videos/committee-reel-2024.mp4" type="video/mp4" />
-                </video>
+            <div>
+              <h3 className="text-4xl md:text-5xl font-black mb-4" style={{ color: theme.text }}>
+                Team 2026
+              </h3>
+              <p className="mb-8 max-w-md" style={{ color: theme.textSub }}>
+                The current powerhouse driving DASCA forward
+              </p>
 
-                {/* Video Overlay Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
+              <VideoPlayer
+                year="2026"
+                videoRef={video2026Ref}
+                isPlaying={isPlaying2026}
+                isMuted={isMuted2026}
+                onPlay={play2026}
+                onPause={pause2026}
+                onMute={toggleMute2026}
+                openFullscreen={() => setFullscreenVideo('2026')}
+              />
+            </div>
 
-                {/* Play/Pause Button (Center) */}
-                {!isPlaying && (
-                  <motion.button
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    exit={{ scale: 0 }}
-                    onClick={togglePlay}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full bg-white/10 backdrop-blur-md border-2 border-white/30 flex items-center justify-center group-hover:scale-110 transition-all duration-300"
-                  >
-                    <Play size={40} className="text-white ml-2" fill="white" />
-                  </motion.button>
-                )}
+            <div className="lg:mt-32">
+              <h3 className="text-4xl md:text-5xl font-black mb-4" style={{ color: theme.text }}>
+                Team 2025
+              </h3>
+              <p className="mb-8 max-w-md" style={{ color: theme.textSub }}>
+                The legends who built the foundation
+              </p>
 
-                {/* Video Controls (Bottom) */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="flex items-center gap-4">
-                    {/* Play/Pause */}
-                    <button
-                      onClick={togglePlay}
-                      className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center hover:bg-white/20 transition-colors"
-                    >
-                      {isPlaying ? (
-                        <Pause size={20} className="text-white" />
-                      ) : (
-                        <Play size={20} className="text-white ml-1" />
-                      )}
-                    </button>
-
-                    {/* Mute/Unmute */}
-                    <button
-                      onClick={toggleMute}
-                      className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center hover:bg-white/20 transition-colors"
-                    >
-                      {isMuted ? (
-                        <VolumeX size={20} className="text-white" />
-                      ) : (
-                        <Volume2 size={20} className="text-white" />
-                      )}
-                    </button>
-                  </div>
-
-                  {/* Fullscreen Button */}
-                  <button
-                    onClick={toggleFullscreen}
-                    className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center hover:bg-white/20 transition-colors"
-                  >
-                    <Maximize2 size={20} className="text-white" />
-                  </button>
-                </div>
-
-                {/* Badge */}
-                <div className="absolute top-6 left-6 px-4 py-2 rounded-full bg-black/40 backdrop-blur-md border border-white/20">
-                  <span className="text-white font-semibold text-sm flex items-center gap-2">
-                    <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-                    DASCA 2026
-                  </span>
-                </div>
-              </div>
-
-              {/* Glow Effect */}
-              <div 
-                className="absolute -inset-1 rounded-3xl blur-3xl opacity-30 -z-10"
-                style={{
-                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)'
-                }}
+              <VideoPlayer
+                year="2025"
+                videoRef={video2025Ref}
+                isPlaying={isPlaying2025}
+                isMuted={isMuted2025}
+                onPlay={play2025}
+                onPause={pause2025}
+                onMute={toggleMute2025}
+                openFullscreen={() => setFullscreenVideo('2025')}
               />
             </div>
           </motion.div>
 
-          {/* Bottom CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="text-center mt-16"
-          >
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-8 py-4 rounded-full font-bold text-white bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-xl">
-                View Full Committee
-              </button>
-              <button 
-                className="px-8 py-4 rounded-full font-bold border-2 hover:scale-105 transition-all duration-300"
-                style={{
-                  borderColor: theme.text,
-                  color: theme.text,
-                  backgroundColor: 'transparent'
-                }}
-              >
-                Join Our Team
-              </button>
-            </div>
-          </motion.div>
+          {/* CTA */}
+          <div className="text-center mt-24">
+            <button
+              onClick={handleViewCommittee}
+              className="px-12 py-5 rounded-full font-bold text-lg text-white
+              bg-gradient-to-r from-violet-600 to-fuchsia-600
+              hover:scale-105 transition shadow-xl">
+              View Full Committee
+            </button>
+          </div>
         </div>
       </section>
 
-      {/* Fullscreen Modal */}
-      {isFullscreen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+      {/* FULLSCREEN */}
+      {fullscreenVideo && (
+        <div
           className="fixed inset-0 z-50 bg-black flex items-center justify-center p-6"
-          onClick={toggleFullscreen}
+          onClick={() => setFullscreenVideo(null)}
         >
-          {/* Close Button */}
-          <button
-            className="absolute top-6 right-6 w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center hover:bg-white/20 transition-colors z-10"
-            onClick={toggleFullscreen}
-          >
-            <X size={24} className="text-white" />
+          <button className="absolute top-6 right-6 text-white hover:scale-110 transition">
+            <X size={32} />
           </button>
 
-          {/* Fullscreen Video */}
-          <div className="relative w-full max-w-7xl aspect-video rounded-2xl overflow-hidden">
-            <video
-              className="w-full h-full object-cover"
-              src="/videos/committee-reel-2024.mp4"
-              controls
-              autoPlay
-              loop
-            />
-          </div>
-        </motion.div>
+          <video
+            src={`/committee-reel-${fullscreenVideo}.mp4`}
+            controls
+            autoPlay
+            className="w-full max-w-7xl rounded-2xl"
+          />
+        </div>
       )}
     </>
   );

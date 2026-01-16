@@ -3,22 +3,13 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// const words = [
-//   "DASCA",    // English
-//   "डास्का",    // Hindi
-//   "દાસ્કા",    // Gujarati
-//   "ದಾಸ್ಕಾ",    // Kannada
-//   "దాస్కా",    // Telugu
-//   "டாஸ்கா"    // Tamil
-// ];
-
 const words = [
-  "DASCA",    // English
-  "Innovation",    // Hindi
-  "Connection",    // Gujarati
-  "Resillience",    // Kannada
-  "AAkruti",    // Telugu
-  "DASCA"    // Tamil
+  "DASCA",    
+  "Innovation",   
+  "Connection",    
+  "Resillience",   
+  "Aakruti",   
+  "DASCA"    
 ];
 
 
