@@ -5,13 +5,9 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Search, Sparkles } from "lucide-react";
 import { useState, useRef } from "react";
 
-// Helper function for GitHub CDN
-const GITHUB_USER = "akshayparihardev";
-const REPO_NAME = "DASCA-";
-const BRANCH = "main";
-
+// Helper function for LOCAL images
 const getImageUrl = (fileName: string) => {
-  return `https://cdn.jsdelivr.net/gh/${GITHUB_USER}/${REPO_NAME}@${BRANCH}/assets/members/${fileName}.png`;
+  return `/images/members/${fileName}.png`;
 };
 
 export default function CommitteePage() {
@@ -35,7 +31,7 @@ export default function CommitteePage() {
       name: "Harsh Saoji", 
       position: "head" as const, 
       role: "President", 
-      image: getImageUrl("Harsh"),
+      image: getImageUrl("Harsh Saoji"),
       domain: "leadership" as const, 
       year: "2025-26" as const 
     },
@@ -44,7 +40,7 @@ export default function CommitteePage() {
       name: "Aditya Gugnani", 
       position: "head" as const, 
       role: "Secretary", 
-      image: getImageUrl("Aditya"),
+      image: getImageUrl("Aditya Gugnani"),
       domain: "leadership" as const, 
       year: "2025-26" as const 
     },
@@ -53,7 +49,7 @@ export default function CommitteePage() {
       name: "Mehansh Masih", 
       position: "head" as const, 
       role: "Treasurer", 
-      image: getImageUrl("Mihansh"),
+      image: getImageUrl("Mehansh Masih"),
       domain: "leadership" as const, 
       year: "2025-26" as const 
     },
@@ -64,7 +60,7 @@ export default function CommitteePage() {
       name: "Alina Anjum", 
       position: "head" as const, 
       role: "Event Head", 
-      image: getImageUrl("Alina"),
+      image: getImageUrl("Alina Anjum"),
       domain: "events" as const, 
       year: "2025-26" as const 
     },
@@ -73,7 +69,7 @@ export default function CommitteePage() {
       name: "Ishan Kashikar", 
       position: "head" as const, 
       role: "Event Head", 
-      image: getImageUrl("Ishan"),
+      image: getImageUrl("Ishan Kashikar"),
       domain: "events" as const, 
       year: "2025-26" as const 
     },
@@ -84,7 +80,7 @@ export default function CommitteePage() {
       name: "Palak Bang", 
       position: "head" as const, 
       role: "Cultural Head", 
-      image: getImageUrl("Palak b"),
+      image: getImageUrl("Palak Bang"),
       domain: "cultural" as const, 
       year: "2025-26" as const 
     },
@@ -95,7 +91,7 @@ export default function CommitteePage() {
       name: "Niharika Nashine", 
       position: "head" as const, 
       role: "Creativity Head", 
-      image: getImageUrl("Niharika"),
+      image: getImageUrl("Niharika Nashine"),
       domain: "creativity" as const, 
       year: "2025-26" as const 
     },
@@ -106,7 +102,7 @@ export default function CommitteePage() {
       name: "Pranay Rokade", 
       position: "head" as const, 
       role: "Publicity Head", 
-      image: getImageUrl("Pranay"),
+      image: getImageUrl("Pranay Rokade"),
       domain: "publicity" as const, 
       year: "2025-26" as const 
     },
@@ -117,7 +113,7 @@ export default function CommitteePage() {
       name: "Kunal Choure", 
       position: "head" as const, 
       role: "Technical Head", 
-      image: getImageUrl("Kunal"),
+      image: getImageUrl("Kunal Choure"),
       domain: "technical" as const, 
       year: "2025-26" as const 
     },
@@ -128,7 +124,7 @@ export default function CommitteePage() {
       name: "Prajjwal Mohan", 
       position: "head" as const, 
       role: "Sports Head", 
-      image: getImageUrl("Prajjwal"),
+      image: getImageUrl("Prajjwal Mohan"),
       domain: "sports" as const, 
       year: "2025-26" as const 
     },
@@ -137,7 +133,7 @@ export default function CommitteePage() {
       name: "Akshat Sharma", 
       position: "head" as const, 
       role: "Sports Head", 
-      image: getImageUrl("Akshat"),
+      image: getImageUrl("Akshat Sharma"),
       domain: "sports" as const, 
       year: "2025-26" as const 
     },
@@ -148,7 +144,7 @@ export default function CommitteePage() {
       name: "Ayush Dhote", 
       position: "head" as const, 
       role: "Social Media Head", 
-      image: getImageUrl("Ayush"),
+      image: getImageUrl("Ayush Dhote"),
       domain: "social-media" as const, 
       year: "2025-26" as const 
     },
@@ -159,7 +155,7 @@ export default function CommitteePage() {
       name: "Anshu Bagne", 
       position: "head" as const, 
       role: "Photography Head", 
-      image: getImageUrl("Ansh"),
+      image: getImageUrl("Anshu Bagne"),
       domain: "photography" as const, 
       year: "2025-26" as const 
     },
@@ -168,7 +164,7 @@ export default function CommitteePage() {
       name: "Ayush Ambule", 
       position: "head" as const, 
       role: "Photography Head", 
-      image: getImageUrl("ayusha"),
+      image: getImageUrl("Ayush Ambule"),
       domain: "photography" as const, 
       year: "2025-26" as const 
     },
@@ -179,7 +175,7 @@ export default function CommitteePage() {
       name: "Durva Deshpande", 
       position: "head" as const, 
       role: "Design Head", 
-      image: getImageUrl("Durva"),
+      image: getImageUrl("Durva Deshpande"),
       domain: "design" as const, 
       year: "2025-26" as const 
     },
@@ -190,7 +186,7 @@ export default function CommitteePage() {
       name: "Jay Trivedi", 
       position: "head" as const, 
       role: "Resource Head", 
-      image: getImageUrl("Jay T"),
+      image: getImageUrl("Jay Trivedi"),
       domain: "resource" as const, 
       year: "2025-26" as const 
     },
@@ -202,7 +198,7 @@ export default function CommitteePage() {
       name: "Kavya Chopade", 
       position: "co-head" as const, 
       role: "Joint Secretary", 
-      image: getImageUrl("Kavya"),
+      image: getImageUrl("Kavya Chopade"),
       domain: "leadership" as const, 
       year: "2025-26" as const 
     },
@@ -211,7 +207,7 @@ export default function CommitteePage() {
       name: "Janhavi Welekar", 
       position: "co-head" as const, 
       role: "Joint Secretary", 
-      image: getImageUrl("Janhavi"),
+      image: getImageUrl("Janhavi Welekar"),
       domain: "leadership" as const, 
       year: "2025-26" as const 
     },
@@ -220,7 +216,7 @@ export default function CommitteePage() {
       name: "Swapnil Patil", 
       position: "co-head" as const, 
       role: "Joint Treasurer", 
-      image: getImageUrl("Swapnil"),
+      image: getImageUrl("Swapnil Patil"),
       domain: "leadership" as const, 
       year: "2025-26" as const 
     },
@@ -231,7 +227,7 @@ export default function CommitteePage() {
       name: "Vedansh Gupta", 
       position: "co-head" as const, 
       role: "Executive Member", 
-      image: getImageUrl("Vedansh"),
+      image: getImageUrl("Vedansh Gupta"),
       domain: "executive-members" as const, 
       year: "2025-26" as const 
     },
@@ -240,7 +236,7 @@ export default function CommitteePage() {
       name: "Parth Thakur", 
       position: "co-head" as const, 
       role: "Executive Member", 
-      image: getImageUrl("Parth"),
+      image: getImageUrl("Parth Thakur"),
       domain: "executive-members" as const, 
       year: "2025-26" as const 
     },
@@ -251,7 +247,7 @@ export default function CommitteePage() {
       name: "Khush Agrawal", 
       position: "co-head" as const, 
       role: "Event Co-Head", 
-      image: getImageUrl("Khush"),
+      image: getImageUrl("khush Agrawal"),
       domain: "events" as const, 
       year: "2025-26" as const 
     },
@@ -260,7 +256,7 @@ export default function CommitteePage() {
       name: "Manya Mokhalgaya", 
       position: "co-head" as const, 
       role: "Event Co-Head", 
-      image: getImageUrl("Manya"),
+      image: getImageUrl("Manya Mokhalgaya"),
       domain: "events" as const, 
       year: "2025-26" as const 
     },
@@ -271,7 +267,7 @@ export default function CommitteePage() {
       name: "Gouri Rajkarne", 
       position: "co-head" as const, 
       role: "Cultural Co-Head", 
-      image: getImageUrl("Gouri"),
+      image: getImageUrl("Gouri Rajkarne"),
       domain: "cultural" as const, 
       year: "2025-26" as const 
     },
@@ -280,7 +276,7 @@ export default function CommitteePage() {
       name: "Krishna Chandak", 
       position: "co-head" as const, 
       role: "Cultural Co-Head", 
-      image: getImageUrl("Krishna"),
+      image: getImageUrl("Krishna Chandak"),
       domain: "cultural" as const, 
       year: "2025-26" as const 
     },
@@ -291,7 +287,7 @@ export default function CommitteePage() {
       name: "Ansh Chopda", 
       position: "co-head" as const, 
       role: "Publicity Co-Head", 
-      image: getImageUrl("Ansh C"),
+      image: getImageUrl("Ansh Chopda"),
       domain: "publicity" as const, 
       year: "2025-26" as const 
     },
@@ -300,7 +296,7 @@ export default function CommitteePage() {
       name: "Rashi Pawar", 
       position: "co-head" as const, 
       role: "Publicity Co-Head", 
-      image: getImageUrl("Rishi"),
+      image: getImageUrl("Rashi Pawar"),
       domain: "publicity" as const, 
       year: "2025-26" as const 
     },
@@ -311,7 +307,7 @@ export default function CommitteePage() {
       name: "Kanak Agrawal", 
       position: "co-head" as const, 
       role: "Technical Co-Head", 
-      image: getImageUrl("Kanak"),
+      image: getImageUrl("Kanak Agrawal"),
       domain: "technical" as const, 
       year: "2025-26" as const 
     },
@@ -320,7 +316,7 @@ export default function CommitteePage() {
       name: "Akshay Parihar", 
       position: "co-head" as const, 
       role: "Technical Co-Head", 
-      image: getImageUrl("Akshay"),
+      image: getImageUrl("Akshay Parihar"),
       domain: "technical" as const, 
       year: "2025-26" as const 
     },
@@ -331,7 +327,7 @@ export default function CommitteePage() {
       name: "Palak Ganwani", 
       position: "co-head" as const, 
       role: "Creativity Co-Head", 
-      image: getImageUrl("Palak G"),
+      image: getImageUrl("Palak Ganwani"),
       domain: "creativity" as const, 
       year: "2025-26" as const 
     },
@@ -340,7 +336,7 @@ export default function CommitteePage() {
       name: "Kshitij Chilate", 
       position: "co-head" as const, 
       role: "Creativity Co-Head", 
-      image: getImageUrl("kshitij"),
+      image: getImageUrl("kshitij Chilate"),
       domain: "creativity" as const, 
       year: "2025-26" as const 
     },
@@ -351,7 +347,7 @@ export default function CommitteePage() {
       name: "Aryaman Verma", 
       position: "co-head" as const, 
       role: "Social Media Co-Head", 
-      image: getImageUrl("Aryaman"),
+      image: getImageUrl("Aryaman Verma"),
       domain: "social-media" as const, 
       year: "2025-26" as const 
     },
@@ -371,7 +367,7 @@ export default function CommitteePage() {
       name: "Rishil Pawar", 
       position: "co-head" as const, 
       role: "Design Co-Head", 
-      image: getImageUrl("Rishil"),
+      image: getImageUrl("Rishil Pawar"),
       domain: "design" as const, 
       year: "2025-26" as const 
     },
@@ -380,7 +376,7 @@ export default function CommitteePage() {
       name: "Prajakta Tiwari", 
       position: "co-head" as const, 
       role: "Design Co-Head", 
-      image: getImageUrl("Prajakta"),
+      image: getImageUrl("Prajakta Tiwari"),
       domain: "design" as const, 
       year: "2025-26" as const 
     },
@@ -391,7 +387,7 @@ export default function CommitteePage() {
       name: "Bhargav Lende", 
       position: "co-head" as const, 
       role: "Photography Co-Head", 
-      image: getImageUrl("Bhargav"),
+      image: getImageUrl("Bhargav Lende"),
       domain: "photography" as const, 
       year: "2025-26" as const 
     },
@@ -400,7 +396,7 @@ export default function CommitteePage() {
       name: "Uday Chandak", 
       position: "co-head" as const, 
       role: "Photography Co-Head", 
-      image: getImageUrl("Uday"),
+      image: getImageUrl("Uday Chandak"),
       domain: "photography" as const, 
       year: "2025-26" as const 
     },
@@ -411,7 +407,7 @@ export default function CommitteePage() {
       name: "Anushka Chavan", 
       position: "co-head" as const, 
       role: "Sports Co-Head", 
-      image: getImageUrl("Anushka"),
+      image: getImageUrl("Anushka Chavan"),
       domain: "sports" as const, 
       year: "2025-26" as const 
     },
@@ -420,7 +416,7 @@ export default function CommitteePage() {
       name: "Tanmay Gaikwad", 
       position: "co-head" as const, 
       role: "Sports Co-Head", 
-      image: getImageUrl("Tanmay"),
+      image: getImageUrl("Tanmay Gaikwad"),
       domain: "sports" as const, 
       year: "2025-26" as const 
     },
@@ -431,7 +427,7 @@ export default function CommitteePage() {
       name: "Samarth Zawar", 
       position: "co-head" as const, 
       role: "Resource Co-Head", 
-      image: getImageUrl("Samarth"),
+      image: getImageUrl("Samarth Zawar"),
       domain: "resource" as const, 
       year: "2025-26" as const 
     },
@@ -451,7 +447,7 @@ export default function CommitteePage() {
       name: "Piyush Chhagani", 
       position: "co-head" as const, 
       role: "Venue Incharge", 
-      image: getImageUrl("piyush ch"),
+      image: getImageUrl("Piyush Chhagani"),
       domain: "venue" as const, 
       year: "2025-26" as const 
     },
@@ -460,7 +456,7 @@ export default function CommitteePage() {
       name: "Aditya Pandey", 
       position: "co-head" as const, 
       role: "Venue Incharge", 
-      image: getImageUrl("Aditya P"),
+      image: getImageUrl("Aditya Pandey"),
       domain: "venue" as const, 
       year: "2025-26" as const 
     },
@@ -471,7 +467,7 @@ export default function CommitteePage() {
       name: "Priyal Khandelwal", 
       position: "co-head" as const, 
       role: "Content & Outreach Incharge", 
-      image: getImageUrl("Priyal"),
+      image: getImageUrl("Priyal Khandelwal"),
       domain: "content" as const, 
       year: "2025-26" as const 
     },
@@ -480,10 +476,10 @@ export default function CommitteePage() {
       name: "Anagha Bhattad", 
       position: "co-head" as const, 
       role: "Content & Outreach Incharge", 
-      image: getImageUrl("Anagha"),
+      image: getImageUrl("Anagha Bhattad"),
       domain: "content" as const, 
       year: "2025-26" as const 
-    },
+    }
   ];
 
   const filteredBySearch = searchQuery.trim()
@@ -494,13 +490,13 @@ export default function CommitteePage() {
     : members;
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-300">
       
-      {/* Stunning Hero Section */}
+      {/* Hero Section */}
       <motion.section 
         ref={heroRef}
         style={{ opacity }}
-        className="relative min-h-[65vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
+        className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-300"
       >
         {/* Animated Background Elements */}
         <div className="absolute inset-0">
@@ -508,7 +504,7 @@ export default function CommitteePage() {
           <motion.div 
             className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full"
             style={{ 
-              background: "radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%)",
               y,
               scale
             }}
@@ -525,7 +521,7 @@ export default function CommitteePage() {
           <motion.div 
             className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full"
             style={{ 
-              background: "radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(168,85,247,0.1) 0%, transparent 70%)",
               y,
               scale
             }}
@@ -539,27 +535,9 @@ export default function CommitteePage() {
               ease: "easeInOut"
             }}
           />
-          <motion.div 
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full"
-            style={{ 
-              background: "radial-gradient(circle, rgba(234,179,8,0.1) 0%, transparent 70%)",
-            }}
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.5, 0.3],
-            }}
-            transition={{
-              duration: 15,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
 
           {/* Grid Pattern Overlay */}
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px]" />
-          
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/50 to-slate-900" />
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
         </div>
 
         {/* Hero Content */}
@@ -571,43 +549,35 @@ export default function CommitteePage() {
           >
             {/* Icon with Glow Effect */}
             <motion.div 
-              className="inline-flex items-center justify-center mb-8"
-              animate={{
-                y: [0, -10, 0],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
+              className="inline-flex items-center justify-center mb-6"
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
             >
               <div className="relative">
-                <div className="absolute inset-0 bg-blue-500/30 blur-3xl rounded-full" />
-                <Sparkles className="relative w-16 h-16 text-blue-400" strokeWidth={1.5} />
+                <div className="absolute inset-0 bg-blue-200 dark:bg-blue-500/20 blur-3xl rounded-full opacity-50" />
+                <Sparkles className="relative w-14 h-14 text-blue-600 dark:text-blue-400" strokeWidth={1.5} />
               </div>
             </motion.div>
 
-            {/* Title with Gradient Text */}
+            {/* Title */}
             <motion.h1 
-              className="text-6xl md:text-7xl lg:text-8xl font-black mb-6 tracking-tight"
+              className="text-5xl md:text-7xl font-black mb-6 tracking-tight text-slate-900 dark:text-white"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <span className="bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent">
-                Our Committee
-              </span>
+              Our Committee
             </motion.h1>
 
             {/* Subtitle */}
             <motion.p 
-              className="text-xl md:text-2xl text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed"
+              className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mb-10 max-w-3xl mx-auto leading-relaxed"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               Meet the passionate individuals driving{" "}
-              <span className="text-blue-400 font-semibold">DASCA</span> forward
+              <span className="text-blue-600 dark:text-blue-400 font-bold">DASCA</span> forward
             </motion.p>
 
             {/* Enhanced Search Bar */}
@@ -618,23 +588,21 @@ export default function CommitteePage() {
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               <div className="relative group">
-                {/* Glow Effect on Hover */}
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl opacity-0 group-hover:opacity-30 blur transition duration-500" />
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 to-purple-400 rounded-2xl opacity-20 group-hover:opacity-40 blur transition duration-500" />
                 
-                {/* Search Input */}
                 <div className="relative">
-                  <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 z-10" />
+                  <Search className="absolute left-6 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500 z-10" />
                   <input
                     type="text"
-                    placeholder="Search by name or role (e.g., Harsh Saoji, President, Technical Head)..."
+                    placeholder="Search by name or role..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-14 pr-14 py-5 rounded-2xl bg-white/10 backdrop-blur-xl border-2 border-white/10 text-white placeholder-slate-400 focus:outline-none focus:border-blue-400/50 focus:bg-white/15 transition-all text-base font-medium shadow-2xl"
+                    className="w-full pl-14 pr-14 py-4 rounded-2xl bg-white dark:bg-slate-800/50 border-2 border-slate-100 dark:border-slate-700/50 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-blue-300 dark:focus:border-blue-500/50 focus:ring-4 focus:ring-blue-50 dark:focus:ring-blue-500/10 transition-all text-base font-medium shadow-xl backdrop-blur-md"
                   />
                   {searchQuery && (
                     <button
                       onClick={() => setSearchQuery("")}
-                      className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition-colors z-10"
+                      className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors z-10"
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -644,14 +612,13 @@ export default function CommitteePage() {
                 </div>
               </div>
 
-              {/* Search Results Count */}
               {searchQuery && (
                 <motion.p 
-                  className="mt-4 text-sm text-slate-400"
+                  className="mt-4 text-sm text-slate-500 dark:text-slate-400"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                 >
-                  Found <span className="text-blue-400 font-semibold">{filteredBySearch.length}</span> member
+                  Found <span className="text-blue-600 dark:text-blue-400 font-bold">{filteredBySearch.length}</span> member
                   {filteredBySearch.length !== 1 ? 's' : ''}
                 </motion.p>
               )}
@@ -661,17 +628,20 @@ export default function CommitteePage() {
 
         {/* Bottom Wave Divider */}
         <div className="absolute bottom-0 left-0 right-0">
-          <svg className="w-full h-24" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <path d="M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,48C672,43,768,53,864,58.7C960,64,1056,64,1152,58.7C1248,53,1344,43,1392,37.3L1440,32L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z" 
-                  fill="rgb(249 250 251)" 
-                  className="transition-colors duration-300"
-            />
+          {/* fill-current uses text color from class, allowing us to switch based on mode */}
+          <svg 
+            className="w-full h-24 text-gray-50 dark:text-slate-900 fill-current transition-colors duration-300" 
+            viewBox="0 0 1440 120" 
+            xmlns="http://www.w3.org/2000/svg" 
+            preserveAspectRatio="none"
+          >
+            <path d="M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,48C672,43,768,53,864,58.7C960,64,1056,64,1152,58.7C1248,53,1344,43,1392,37.3L1440,32L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z" />
           </svg>
         </div>
       </motion.section>
 
       {/* Committee Carousel Section */}
-      <section className="bg-gradient-to-br from-gray-50 via-white to-gray-50">
+      <section className="bg-gray-50 dark:bg-slate-900 pb-40 pt-10 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6">
           <CommitteeMembersCarousel members={filteredBySearch} loop={true} />
         </div>

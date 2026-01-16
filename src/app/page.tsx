@@ -345,7 +345,7 @@ export default function Home() {
         {/* SECTION 6: CURVED LOOP */}
         <section className="relative py-20" style={{ backgroundColor: theme.bg }}>
           <CurvedLoop
-            marqueeText="DASCA  DOESN'T  DISAPPOINTS ✦ "
+            marqueeText="DASCA ✦ DOESN'T ✦ DISAPPOINTS ✦ "
             speed={3}
             curveAmount={350}
             direction="right"
@@ -394,17 +394,6 @@ export default function Home() {
                   </span>
                 </motion.button>
 
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-10 py-5 rounded-full font-bold text-lg border-2"
-                  style={{
-                    borderColor: theme.text,
-                    color: theme.text,
-                  }}
-                >
-                  Join Our Team
-                </motion.button>
               </div>
             </motion.div>
           </div>

@@ -63,6 +63,7 @@ const CommitteeMembersCarousel = ({
   const [activeDomain, setActiveDomain] = useState<DomainType>("all-domains");
   const [activePosition, setActivePosition] = useState<PositionType | "all">("head");
   const [showDomainDropdown, setShowDomainDropdown] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState<Record<string, boolean>>({});
 
   // Filter members based on all criteria
   const filteredMembers = useMemo(() => {
@@ -136,7 +137,6 @@ const CommitteeMembersCarousel = ({
   }, [api]);
 
   const handleYearChange = (year: YearType) => {
-    // Toggle functionality - click again to reset
     if (activeYear === year && activeYear !== "2025-26") {
       setActiveYear("2025-26");
     } else {
@@ -152,7 +152,6 @@ const CommitteeMembersCarousel = ({
   };
 
   const handlePositionChange = (position: PositionType | "all") => {
-    // Toggle functionality - if clicking same position, toggle it off
     if (activePosition === position) {
       setActivePosition("all");
     } else {
@@ -161,13 +160,17 @@ const CommitteeMembersCarousel = ({
     api?.scrollTo(0);
   };
 
+  const handleImageLoad = (memberId: string) => {
+    setImageLoaded(prev => ({ ...prev, [memberId]: true }));
+  };
+
   return (
     <div className="relative w-full">
-      {/* Background Extension - continues to bottom */}
+      {/* Background Extension */}
       <div className="absolute inset-x-0 top-0 bottom-0 bg-gradient-to-br from-gray-50 via-white to-gray-50 -z-10" />
       
       <div className="space-y-8 pb-20 pt-8">
-        {/* Filters Row - Year + Domain side by side */}
+        {/* Filters Row - Year + Domain */}
         <div className="flex flex-wrap items-center justify-center gap-4 px-4">
           {/* Year Filter */}
           <div className="inline-flex rounded-full bg-gradient-to-r from-gray-800 to-gray-900 p-1.5 shadow-xl">
@@ -237,7 +240,7 @@ const CommitteeMembersCarousel = ({
           </div>
         </div>
 
-        {/* Position Filter with Toggle */}
+        {/* Position Filter */}
         <div className="flex justify-center px-4">
           <div className="inline-flex rounded-full bg-white p-1.5 shadow-md border-2 border-gray-200">
             <button
@@ -326,7 +329,7 @@ const CommitteeMembersCarousel = ({
           }
         >
           <CarouselContent className="-ml-6">
-            {filteredMembers.map((member) => (
+            {filteredMembers.map((member, index) => (
               <CarouselItem
                 key={member.id}
                 className="pl-6 md:basis-1/2 lg:basis-1/3"
@@ -342,11 +345,21 @@ const CommitteeMembersCarousel = ({
                   <div className="relative mx-auto h-[520px] w-[340px] overflow-hidden rounded-3xl bg-white shadow-2xl">
                     {/* Background Image */}
                     <div className="absolute inset-0">
+                      {/* Skeleton Loader */}
+                      {!imageLoaded[member.id] && (
+                        <div className="absolute inset-0 bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200 animate-pulse" />
+                      )}
+                      
                       <img
                         src={member.image}
                         alt={member.name}
-                        className="h-full w-full object-cover"
-                        loading="eager"
+                        className={cn(
+                          "h-full w-full object-cover transition-opacity duration-300",
+                          imageLoaded[member.id] ? "opacity-100" : "opacity-0"
+                        )}
+                        loading={index < 3 ? "eager" : "lazy"}
+                        decoding="async"
+                        onLoad={() => handleImageLoad(member.id)}
                       />
                       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80" />
                     </div>

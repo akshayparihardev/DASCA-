@@ -1,207 +1,281 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Target, Eye, Heart, Lightbulb, Users, Sparkles } from "lucide-react";
-import { useRef } from "react";
+import { 
+  Target, 
+  Eye, 
+  Heart, 
+  Lightbulb, 
+  Users, 
+  BookOpen, 
+  ShieldCheck, 
+  Laptop, 
+  GraduationCap, 
+  Music 
+} from "lucide-react";
+import { useRef, useState, useEffect } from "react";
 
 export default function AboutPage() {
   const heroRef = useRef(null);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
   });
 
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.98]);
+
+  // Dark mode observer
+  useEffect(() => {
+    const checkDarkMode = () => {
+      setIsDarkMode(document.body.classList.contains('dark-mode'));
+    };
+
+    checkDarkMode();
+    const observer = new MutationObserver(checkDarkMode);
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const theme = {
+    bg: isDarkMode ? '#0A0A0A' : '#F8FAFC',
+    cardBg: isDarkMode ? '#141414' : '#FFFFFF',
+    text: isDarkMode ? '#F8FAFC' : '#0F172A',
+    textSub: isDarkMode ? '#94A3B8' : '#475569',
+    border: isDarkMode ? '#262626' : '#E5E7EB',
+    accent: isDarkMode ? '#8B5CF6' : '#6366F1',
+  };
 
   const coreValues = [
     {
-      icon: Target,
-      title: "Excellence",
-      description: "We strive for the highest standards in everything we do, from event planning to execution."
-    },
-    {
-      icon: Lightbulb,
-      title: "Innovation",
-      description: "We embrace creativity and new ideas, constantly pushing boundaries to create unique experiences."
+      icon: BookOpen,
+      title: "Learning-Oriented",
+      description: "Prioritizing continuous learning and skill development to stay ahead in the evolving tech landscape.",
+      color: "from-blue-600 to-cyan-600"
     },
     {
       icon: Users,
       title: "Collaboration",
-      description: "We believe in the power of teamwork and building strong relationships across all domains."
+      description: "Believing in the power of teamwork and peer-to-peer knowledge sharing to achieve common goals.",
+      color: "from-violet-600 to-purple-600"
+    },
+    {
+      icon: Lightbulb,
+      title: "Innovation",
+      description: "Encouraging creativity and unique problem-solving approaches to tackle real-world data challenges.",
+      color: "from-orange-600 to-pink-600"
+    },
+    {
+      icon: ShieldCheck,
+      title: "Integrity",
+      description: "Upholding the ethical use of data and technology as a fundamental standard in all our practices.",
+      color: "from-green-600 to-emerald-600"
     },
     {
       icon: Heart,
-      title: "Passion",
-      description: "We are driven by genuine enthusiasm and dedication to making a positive impact on campus life."
+      title: "Inclusivity",
+      description: "Fostering an open, supportive environment where every learner is welcomed and their potential valued.",
+      color: "from-pink-600 to-rose-600"
+    }
+  ];
+
+  const initiatives = [
+    {
+      icon: Laptop,
+      title: "Technical Workshops",
+      description: "Hands-on sessions on Data Science, AI/ML, and Web Development to build real-world practical skills.",
+      color: "from-blue-600 to-cyan-600"
+    },
+    {
+      icon: GraduationCap,
+      title: "Alumni Interaction",
+      description: "Bridging the gap between seniors and juniors through mentorship sessions, career guidance, and networking.",
+      color: "from-violet-600 to-fuchsia-600"
+    },
+    {
+      icon: Music,
+      title: "Cultural Events",
+      description: "Celebrating the spirit of our department with festivals, talent showcases, and community gatherings.",
+      color: "from-orange-600 to-pink-600"
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
+    <div className="min-h-screen font-sans selection:bg-blue-500/20 selection:text-blue-900" style={{ backgroundColor: theme.bg }}>
       
       {/* HERO SECTION */}
       <motion.section 
         ref={heroRef}
         style={{ opacity, scale }}
-        className="relative min-h-[70vh] flex items-center justify-center overflow-hidden"
+        className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-slate-950"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black">
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-20 left-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob" />
-            <div className="absolute top-40 right-20 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000" />
-            <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000" />
+        {/* Background - Refined Gradients & Noise */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black">
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-soft-light"></div>
+          
+          <div className="absolute inset-0 opacity-30">
+            <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-600/40 rounded-full mix-blend-screen filter blur-[100px] animate-blob" />
+            <div className="absolute top-[20%] right-[-10%] w-[400px] h-[400px] bg-cyan-500/30 rounded-full mix-blend-screen filter blur-[80px] animate-blob animation-delay-2000" />
+            <div className="absolute bottom-[-10%] left-[20%] w-[600px] h-[600px] bg-indigo-600/30 rounded-full mix-blend-screen filter blur-[120px] animate-blob animation-delay-4000" />
           </div>
         </div>
 
-        <div className="relative z-10 text-center px-6 py-20">
+        <div className="relative z-10 text-center px-6 py-20 max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h1 className="text-7xl md:text-8xl lg:text-9xl font-black text-white mb-6 tracking-tighter">
+            <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-slate-400 mb-6 tracking-tight">
               ABOUT US
             </h1>
-            <div className="flex items-center justify-center gap-4 mb-8">
-              <div className="h-1 w-20 bg-gradient-to-r from-transparent via-white to-transparent" />
-              <p className="text-xl md:text-2xl text-gray-300 font-light tracking-[0.3em]">
+            
+            <div className="flex items-center justify-center gap-6 mb-10 opacity-80">
+              <div className="h-px w-16 bg-gradient-to-r from-transparent via-blue-400 to-transparent" />
+              <p className="text-xl md:text-2xl text-blue-100 font-light tracking-[0.4em] uppercase">
                 DASCA
               </p>
-              <div className="h-1 w-20 bg-gradient-to-r from-transparent via-white to-transparent" />
+              <div className="h-px w-16 bg-gradient-to-r from-transparent via-blue-400 to-transparent" />
             </div>
-            <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
-              The heartbeat of campus culture and creativity
+            
+            <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed font-light">
+              Fostering knowledge, innovation, and collaboration in <span className="text-blue-200 font-normal">Data Science & Analytics</span>.
             </p>
           </motion.div>
         </div>
 
+        {/* Scroll Indicator */}
         <motion.div 
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2"
+          animate={{ y: [0, 8, 0], opacity: [0.5, 1, 0.5] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
-          <div className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-2">
-            <div className="w-1 h-3 bg-white/50 rounded-full" />
-          </div>
+          <div className="w-[1px] h-16 bg-gradient-to-b from-transparent via-slate-500 to-transparent"></div>
         </motion.div>
       </motion.section>
 
       {/* WHAT IS DASCA */}
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-5xl mx-auto">
+      <section className="py-24 px-6 relative" style={{ backgroundColor: theme.cardBg }}>
+        <div className="max-w-4xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight" style={{ color: theme.text }}>
               What is DASCA?
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-8" />
+            <div className="w-20 h-1.5 bg-gradient-to-r from-blue-600 to-cyan-400 mx-auto rounded-full" />
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="space-y-6 text-lg text-gray-700 leading-relaxed"
+            className="space-y-8 text-lg md:text-xl leading-relaxed font-light"
+            style={{ color: theme.textSub }}
           >
-            <p className="text-xl text-gray-900 font-semibold">
-              DASCA (Department/Division of Arts, Sports and Cultural Activities) is the student-run 
-              committee responsible for organizing and managing all cultural, sports, and 
-              extracurricular activities at [Your Institution Name].
+            <p className="first-letter:text-5xl first-letter:font-bold first-letter:mr-3 first-letter:float-left" style={{ color: theme.text }}>
+              DASCA (Data Science Association) is a student-led technical club dedicated to fostering knowledge, innovation, and collaboration in the domain of data science and analytics.
             </p>
             
             <p>
-              We are the beating heart of campus life, bringing together students from diverse 
-              backgrounds to create unforgettable experiences through events, competitions, 
-              festivals, and initiatives that enrich the academic journey.
+              The club aims to create a vibrant learning ecosystem where students can enhance their technical skills, explore real-world applications, and stay updated with the latest industry trends.
             </p>
 
-            <p>
-              Our diverse team works across specialized departments—from organizing spectacular 
-              cultural festivals and technical symposiums to intimate workshops and competitive 
-              sports tournaments. Every event we create is designed to celebrate talent, foster 
-              community, and build lasting memories.
-            </p>
-
-            <p>
-              DASCA is more than an event committee; it's a platform for leadership, creativity, 
-              teamwork, and personal growth. We believe in creating an inclusive space where 
-              every student can discover their potential, showcase their talents, and contribute 
-              to a vibrant campus culture.
-            </p>
+            <div className="p-6 rounded-r-lg border-l-4 border-blue-500 italic" style={{ backgroundColor: theme.bg, color: theme.text }}>
+              "We function as a bridge between academic theory and practical application—providing a platform to dive deep into visualization, ML, and statistical analysis."
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* VISION & MISSION */}
-      <section className="py-20 px-6 bg-white">
+      <section className="py-24 px-6" style={{ backgroundColor: theme.bg }}>
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
             
+            {/* Vision - WITH GLOW EFFECT */}
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="relative"
+              className="group relative"
+              style={{ padding: '4px' }}
             >
-              <div className="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-500 rounded-3xl opacity-10" />
-              <div className="relative bg-gradient-to-br from-gray-50 to-white p-8 rounded-3xl border-2 border-gray-100 hover:border-blue-200 transition-all duration-300">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-500 mb-6">
-                  <Eye className="w-8 h-8 text-white" />
+              {/* 🔥 GLOW EFFECT */}
+              <div
+                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-75 transition-opacity duration-700 bg-gradient-to-r from-blue-600 to-cyan-600"
+                style={{
+                  filter: 'blur(20px)',
+                  transform: 'scale(1.05)',
+                }}
+              />
+
+              <div
+                className="relative p-10 rounded-2xl shadow-[0_2px_40px_-12px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.12)] transition-all duration-300"
+                style={{ backgroundColor: theme.cardBg, border: `1px solid ${theme.border}` }}
+              >
+                <div className="w-14 h-14 bg-blue-50 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300">
+                  <Eye className="w-7 h-7 text-blue-600" />
                 </div>
-                <h3 className="text-3xl font-black text-gray-900 mb-4">
-                  Our Vision
-                </h3>
-                <p className="text-gray-700 leading-relaxed">
-                  To be the catalyst for a vibrant, inclusive, and inspiring campus culture 
-                  where every student discovers their potential, celebrates diversity, and 
-                  creates memories that last a lifetime.
+                
+                <h3 className="text-3xl font-bold mb-4 tracking-tight" style={{ color: theme.text }}>Our Vision</h3>
+                <p className="leading-relaxed" style={{ color: theme.textSub }}>
+                  To build a strong community of data science enthusiasts who are equipped with analytical thinking, technical expertise, and ethical values to solve real-world problems.
                 </p>
               </div>
             </motion.div>
 
+            {/* Mission - WITH GLOW EFFECT */}
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
-              className="relative"
+              className="group relative"
+              style={{ padding: '4px' }}
             >
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-3xl opacity-10" />
-              <div className="relative bg-gradient-to-br from-gray-50 to-white p-8 rounded-3xl border-2 border-gray-100 hover:border-purple-200 transition-all duration-300">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 mb-6">
-                  <Target className="w-8 h-8 text-white" />
+              {/* 🔥 GLOW EFFECT */}
+              <div
+                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-75 transition-opacity duration-700 bg-gradient-to-r from-cyan-600 to-blue-600"
+                style={{
+                  filter: 'blur(20px)',
+                  transform: 'scale(1.05)',
+                }}
+              />
+
+              <div
+                className="relative p-10 rounded-2xl shadow-[0_2px_40px_-12px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.12)] transition-all duration-300"
+                style={{ backgroundColor: theme.cardBg, border: `1px solid ${theme.border}` }}
+              >
+                <div className="w-14 h-14 bg-cyan-50 dark:bg-cyan-900/30 rounded-xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300">
+                  <Target className="w-7 h-7 text-cyan-600" />
                 </div>
-                <h3 className="text-3xl font-black text-gray-900 mb-4">
-                  Our Mission
-                </h3>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  To organize exceptional events and activities that:
-                </p>
-                <ul className="space-y-2 text-gray-700">
-                  <li className="flex items-start gap-2">
-                    <span className="text-purple-500 font-bold">•</span>
-                    <span>Foster creativity, innovation, and excellence</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-purple-500 font-bold">•</span>
-                    <span>Build a strong sense of community and belonging</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-purple-500 font-bold">•</span>
-                    <span>Provide platforms for skill development and leadership</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-purple-500 font-bold">•</span>
-                    <span>Celebrate diverse talents and perspectives</span>
-                  </li>
+
+                <h3 className="text-3xl font-bold mb-4 tracking-tight" style={{ color: theme.text }}>Our Mission</h3>
+                <ul className="space-y-4" style={{ color: theme.textSub }}>
+                  {[
+                    "Promote awareness and understanding of data science.",
+                    "Provide hands-on learning through workshops & projects.",
+                    "Connect students with industry experts and alumni.",
+                    "Encourage teamwork, innovation, and continuous learning."
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-cyan-500 flex-shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </motion.div>
@@ -210,25 +284,25 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CORE VALUES */}
-      <section className="py-20 px-6 bg-gradient-to-br from-gray-50 to-white">
-        <div className="max-w-6xl mx-auto">
+      {/* CORE VALUES - WITH GLOW EFFECT */}
+      <section className="py-24 px-6" style={{ backgroundColor: theme.cardBg }}>
+        <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <h2 className="text-5xl md:text-6xl font-black text-gray-900 mb-6">
-              Our Core Values
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight" style={{ color: theme.text }}>
+              Core Values
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              The principles that guide every decision we make and every event we organize
+            <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: theme.textSub }}>
+              The fundamental principles that drive our community forward.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {coreValues.map((value, index) => (
               <motion.div
                 key={index}
@@ -236,44 +310,108 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white p-8 rounded-2xl border-2 border-gray-100 hover:border-gray-300 hover:shadow-xl transition-all duration-300 group"
+                className={`group relative ${
+                   index >= 3 ? "lg:col-span-1 lg:mx-auto lg:w-full lg:max-w-md" : ""
+                }`}
+                style={{ padding: '4px' }}
               >
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-gray-900 to-gray-700 mb-4 group-hover:scale-110 transition-transform duration-300">
-                  <value.icon className="w-7 h-7 text-white" />
+                {/* 🔥 GLOW EFFECT */}
+                <div
+                  className={`absolute inset-0 rounded-xl opacity-0 group-hover:opacity-75 transition-opacity duration-700 bg-gradient-to-r ${value.color}`}
+                  style={{
+                    filter: 'blur(20px)',
+                    transform: 'scale(1.05)',
+                  }}
+                />
+
+                <div
+                  className="relative p-8 rounded-xl hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                  style={{ backgroundColor: theme.bg, border: `1px solid ${theme.border}` }}
+                >
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg border group-hover:scale-110 transition-transform duration-300"
+                    style={{ 
+                      backgroundColor: theme.cardBg, 
+                      borderColor: theme.border,
+                      color: theme.text 
+                    }}>
+                    <value.icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-bold mt-6 mb-3" style={{ color: theme.text }}>
+                    {value.title}
+                  </h3>
+                  <p className="leading-relaxed text-sm" style={{ color: theme.textSub }}>
+                    {value.description}
+                  </p>
                 </div>
-                <h3 className="text-2xl font-black text-gray-900 mb-3">
-                  {value.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {value.description}
-                </p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 px-6 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
-        <div className="max-w-4xl mx-auto text-center">
+      {/* KEY INITIATIVES - WITH GLOW EFFECT */}
+      <section className="py-24 px-6 relative overflow-hidden" style={{ backgroundColor: isDarkMode ? '#0f172a' : '#f1f5f9' }}>
+        {/* Abstract Background */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10 pointer-events-none">
+             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-900/40 rounded-full blur-[100px]" />
+             <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-900/40 rounded-full blur-[100px]" />
+        </div>
+
+        <div className="max-w-6xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            className="text-center mb-16"
           >
-            <Sparkles className="w-16 h-16 mx-auto mb-6 text-yellow-400" />
-            <h2 className="text-4xl md:text-5xl font-black mb-6">
-              Join the DASCA Family
-            </h2>
-            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-              Applications for the next committee open annually. Be part of creating 
-              unforgettable experiences and making a lasting impact on campus life.
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight" style={{ color: theme.text }}>Key Initiatives</h2>
+            <p className="text-xl max-w-2xl mx-auto font-light" style={{ color: theme.textSub }}>
+              Beyond academics, we foster growth through technical training, mentorship, and vibrant community events.
             </p>
-            <button className="px-8 py-4 bg-white text-gray-900 font-bold rounded-full hover:bg-gray-100 transition-colors duration-300 text-lg shadow-xl hover:shadow-2xl hover:scale-105 transform">
-              Get Notified for Recruitment
-            </button>
           </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {initiatives.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="group relative"
+                style={{ padding: '4px' }}
+              >
+                {/* 🔥 GLOW EFFECT */}
+                <div
+                  className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-75 transition-opacity duration-700 bg-gradient-to-r ${item.color}`}
+                  style={{
+                    filter: 'blur(20px)',
+                    transform: 'scale(1.05)',
+                  }}
+                />
+
+                <div
+                  className="relative p-8 rounded-2xl backdrop-blur-sm hover:shadow-xl transition-all duration-300"
+                  style={{ 
+                    backgroundColor: theme.cardBg,
+                    border: `1px solid ${theme.border}`
+                  }}
+                >
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+                    style={{ 
+                      backgroundColor: theme.bg,
+                      color: theme.accent 
+                    }}>
+                    <item.icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-3" style={{ color: theme.text }}>{item.title}</h3>
+                  <p className="leading-relaxed font-light" style={{ color: theme.textSub }}>
+                    {item.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -285,7 +423,7 @@ export default function AboutPage() {
           66% { transform: translate(-20px, 20px) scale(0.9); }
         }
         .animate-blob {
-          animation: blob 7s infinite;
+          animation: blob 10s infinite;
         }
         .animation-delay-2000 {
           animation-delay: 2s;

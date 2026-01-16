@@ -6,9 +6,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 const words = [
   "DASCA",    
   "Innovation",   
-  "Connection",    
-  "Resillience",   
-  "Aakruti",   
+  "Collaboration",    
+  "Integrity",   
+  "Networking",   
   "DASCA"    
 ];
 
