@@ -1,3 +1,10 @@
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'DASCA - Data Science Association | Ramdeobaba University',
+  description: 'Join 2000+ students at DASCA RBU. 50+ annual events including tech workshops, cultural festivals, and sports championships. Empowering innovation through data science.',
+}
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -24,7 +31,7 @@ export default function Home() {
     }
   }, []);
 
-  // Dark mode observer (unchanged)
+  // Dark mode observer
   useEffect(() => {
     const checkDarkMode = () => {
       setIsDarkMode(document.body.classList.contains('dark-mode'));
@@ -102,8 +109,47 @@ export default function Home() {
     },
   ];
 
+  // 🔥 SEO - STRUCTURED DATA (Schema.org)
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "DASCA - Data Science Association",
+    "alternateName": "DASCA RBU",
+    "url": "https://dasca.in",
+    "logo": "https://dasca.in/logo.png",
+    "description": "Official Data Science Association of Ramdeobaba University, Nagpur. Empowering 2000+ students through 50+ annual events including tech workshops, cultural festivals, and sports championships.",
+    "email": "dasca@rknec.edu",
+    "foundingDate": "2021",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Nagpur",
+      "addressRegion": "Maharashtra",
+      "postalCode": "440013",
+      "addressCountry": "IN"
+    },
+    "sameAs": [
+      "https://www.instagram.com/dasca_rbu",
+      "https://www.linkedin.com/company/dasca-rbu"
+    ],
+    "memberOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Ramdeobaba College of Engineering and Management"
+    },
+    "numberOfEmployees": {
+      "@type": "QuantitativeValue",
+      "value": 100
+    },
+    "slogan": "Where Passion Meets Purpose"
+  };
+
   return (
     <>
+      {/* 🔥 SEO - SCHEMA MARKUP */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+
       {/* 🔥 WORDS PRELOADER — ONLY ON PAGE RELOAD */}
       <AnimatePresence mode="wait">
         {isLoading && (
@@ -305,14 +351,14 @@ export default function Home() {
                     className="text-7xl font-black opacity-10 absolute top-6 left-6"
                     style={{ color: theme.accent }}
                   >
-                    "
+                    &quot;
                   </div>
 
                   <p
                     className="text-lg mb-8 italic leading-relaxed"
                     style={{ color: theme.text }}
                   >
-                    "{t.quote}"
+                    &quot;{t.quote}&quot;
                   </p>
 
                   <div className="flex items-center gap-4">
@@ -393,7 +439,6 @@ export default function Home() {
                     <ArrowRight />
                   </span>
                 </motion.button>
-
               </div>
             </motion.div>
           </div>

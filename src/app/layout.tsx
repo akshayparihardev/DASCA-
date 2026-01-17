@@ -7,8 +7,73 @@ import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "DASCA | Data Science Association",
-  description: "Empowering students with data-driven insights and fostering innovation at RBU Nagpur",
+  title: {
+    default: 'DASCA - Data Science Association | Ramdeobaba University Nagpur',
+    template: '%s | DASCA RBU',
+  },
+  description: 'DASCA is the official Data Science Association of Ramdeobaba University, Nagpur. Join 2000+ students for tech events, workshops, cultural festivals, and sports championships. Empowering innovation through data science.',
+  keywords: [
+    'DASCA',
+    'Data Science Association',
+    'Ramdeobaba University',
+    'RBU Nagpur',
+    'RCOEM',
+    'tech events Nagpur',
+    'data science club',
+    'student committee',
+    'tech workshops',
+    'university events Nagpur',
+    'DASCA RBU',
+    'data science student association',
+    'tech fest Nagpur'
+  ],
+  authors: [{ name: 'DASCA Team' }],
+  creator: 'DASCA - Ramdeobaba University',
+  publisher: 'DASCA RBU',
+  
+  openGraph: {
+    type: 'website',
+    locale: 'en_IN',
+    url: 'https://dasca.in', // ✅ Updated
+    title: 'DASCA - Data Science Association | RBU Nagpur',
+    description: 'Official Data Science Association of Ramdeobaba University. 50+ events annually, 2000+ active students. Join the tech revolution!',
+    siteName: 'DASCA RBU',
+    images: [{
+      url: 'https://dasca.in/og-image.jpg', // ✅ Updated
+      width: 1200,
+      height: 630,
+      alt: 'DASCA - Data Science Association Ramdeobaba University',
+    }],
+  },
+  
+  twitter: {
+    card: 'summary_large_image',
+    title: 'DASCA - Data Science Association | RBU',
+    description: 'Empowering 2000+ students with data-driven insights and innovation at Ramdeobaba University, Nagpur',
+    creator: '@dasca_rbu',
+    images: ['https://dasca.in/og-image.jpg'], // ✅ Updated
+  },
+  
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  
+  alternates: {
+    canonical: 'https://dasca.in', // ✅ Updated
+  },
+  
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
 };
 
 export default function RootLayout({

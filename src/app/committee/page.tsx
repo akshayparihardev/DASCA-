@@ -1,3 +1,15 @@
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Committee Members - Meet the DASCA Team | RBU',
+  description: 'Meet the 100+ committee members of DASCA who organize events, workshops, and festivals at Ramdeobaba University. Join our passionate team driving innovation.',
+  openGraph: {
+    title: 'DASCA Committee - The Team Behind Innovation',
+    description: 'Meet 100+ passionate committee members at DASCA RBU',
+    url: 'https://dasca.in/committee',
+  },
+}
+
 "use client";
 
 import { CommitteeMembersCarousel } from "@/components/CommitteeMembersCarousel";

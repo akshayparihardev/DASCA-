@@ -1,4 +1,15 @@
-// app/events/page.tsx
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Events - Tech Workshops & Festivals | DASCA RBU',
+  description: 'Explore 50+ annual events by DASCA including tech workshops, cultural festivals, sports championships, and skill development programs at Ramdeobaba University, Nagpur.',
+  openGraph: {
+    title: 'DASCA Events - Workshops, Festivals & Championships',
+    description: '50+ annual events for 2000+ students at RBU Nagpur',
+    url: 'https://dasca.in/events',
+  },
+}
+
 "use client";
 
 import React from 'react';
