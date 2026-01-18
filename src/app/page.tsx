@@ -2,27 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import WordsPreloader from '../components/WordsPreloader';
+
 import HeroSection from '../components/home/HeroSection';
 import CurvedLoop from '../components/home/CurvedLoop';
 import PremiumReelSection from '../components/home/PremiumReelSection';
 import { Sparkles, TrendingUp, Users, Zap, ArrowRight } from 'lucide-react';
 
 export default function Home() {
-  // 🔥 VERY IMPORTANT
-  // default false, taaki animation control me rahe
-  const [isLoading, setIsLoading] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
-
-  // ✅ PRELOADER ONLY ON REAL PAGE RELOAD
-  useEffect(() => {
-    const hasLoaded = sessionStorage.getItem('hasLoaded');
-
-    if (!hasLoaded) {
-      setIsLoading(true);
-      sessionStorage.setItem('hasLoaded', 'true');
-    }
-  }, []);
 
   // Dark mode observer
   useEffect(() => {
@@ -83,24 +70,7 @@ export default function Home() {
     },
   ];
 
-  const testimonials = [
-    {
-      quote:
-        'DASCA transformed me from a shy fresher into someone who can confidently organize fests for 1000+ people. Best decision ever.',
-      author: 'Rohan Sharma',
-      year: '3rd Year',
-      image:
-        'https://ui-avatars.com/api/?name=Rohan+Sharma&background=667eea&color=fff&size=128',
-    },
-    {
-      quote:
-        "Made lifelong friends and discovered my passion for event management. DASCA isn't just a committee — it's a family.",
-      author: 'Priya Singh',
-      year: 'Final Year',
-      image:
-        'https://ui-avatars.com/api/?name=Priya+Singh&background=764ba2&color=fff&size=128',
-    },
-  ];
+
 
   // 🔥 SEO - STRUCTURED DATA (Schema.org)
   const organizationSchema = {
@@ -143,14 +113,9 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
 
-      {/* 🔥 WORDS PRELOADER — ONLY ON PAGE RELOAD */}
-      <AnimatePresence mode="wait">
-        {isLoading && (
-          <WordsPreloader finishLoading={() => setIsLoading(false)} />
-        )}
-      </AnimatePresence>
-
       <main className="w-full overflow-x-hidden">
+
+
         {/* SECTION 1: HERO */}
         <HeroSection isDarkMode={isDarkMode} />
 
@@ -241,150 +206,18 @@ export default function Home() {
         {/* SECTION 3: PREMIUM REEL */}
         <PremiumReelSection isDarkMode={isDarkMode} />
 
-        {/* SECTION 4: STATS */}
-        <section className="relative py-32" style={{ backgroundColor: theme.bg }}>
-          <div className="container mx-auto px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="text-center mb-20"
-            >
-              <h2
-                className="text-5xl md:text-7xl font-black mb-6 tracking-tight"
-                style={{ color: theme.text }}
-              >
-                By The Numbers
-              </h2>
-              <p
-                className="text-xl md:text-2xl font-light max-w-2xl mx-auto"
-                style={{ color: theme.textSub }}
-              >
-                Our impact speaks louder than words
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-6xl mx-auto">
-              {stats.map((stat, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: idx * 0.1 }}
-                  viewport={{ once: true }}
-                  className="text-center p-8 rounded-3xl"
-                  style={{
-                    backgroundColor: theme.cardBg,
-                    border: `1px solid ${theme.border}`,
-                  }}
-                >
-                  <stat.icon
-                    size={48}
-                    className="mx-auto mb-6"
-                    style={{ color: theme.accent }}
-                  />
-                  <div className="text-5xl md:text-6xl font-black mb-3 bg-gradient-to-r from-violet-500 to-fuchsia-500 bg-clip-text text-transparent">
-                    {stat.value}
-                  </div>
-                  <div
-                    className="font-semibold tracking-wide"
-                    style={{ color: theme.textSub }}
-                  >
-                    {stat.label}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 5: TESTIMONIALS */}
-        <section
-          className="relative py-32"
-          style={{ backgroundColor: theme.cardBg }}
-        >
-          <div className="container mx-auto px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="text-center mb-20"
-            >
-              <h2
-                className="text-5xl md:text-7xl font-black mb-6 tracking-tight"
-                style={{ color: theme.text }}
-              >
-                Real Stories, Real Impact
-              </h2>
-              <p
-                className="text-xl font-light"
-                style={{ color: theme.textSub }}
-              >
-                From students who lived the DASCA experience
-              </p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {testimonials.map((t, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: idx * 0.2 }}
-                  viewport={{ once: true }}
-                  className="p-10 rounded-3xl relative"
-                  style={{
-                    backgroundColor: theme.bg,
-                    border: `1px solid ${theme.border}`,
-                  }}
-                >
-                  <div
-                    className="text-7xl font-black opacity-10 absolute top-6 left-6"
-                    style={{ color: theme.accent }}
-                  >
-                    &quot;
-                  </div>
-
-                  <p
-                    className="text-lg mb-8 italic leading-relaxed"
-                    style={{ color: theme.text }}
-                  >
-                    &quot;{t.quote}&quot;
-                  </p>
-
-                  <div className="flex items-center gap-4">
-                    <img
-                      src={t.image}
-                      alt={t.author}
-                      className="w-14 h-14 rounded-full"
-                    />
-                    <div>
-                      <div
-                        className="font-bold text-lg"
-                        style={{ color: theme.text }}
-                      >
-                        {t.author}
-                      </div>
-                      <div
-                        className="text-sm"
-                        style={{ color: theme.textSub }}
-                      >
-                        {t.year}
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* SECTION 6: CURVED LOOP */}
-        <section className="relative py-20" style={{ backgroundColor: theme.bg }}>
+        <section className="relative py-32 overflow-hidden" style={{
+          background: isDarkMode
+            ? 'linear-gradient(180deg, #020617 0%, #1e1b4b 50%, #020617 100%)'
+            : 'linear-gradient(180deg, #FAFAFA 0%, #f3e8ff 50%, #FAFAFA 100%)'
+        }}>
+          {/* Decorative elements */}
+          <div className="absolute top-10 left-10 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-10 right-10 w-40 h-40 bg-violet-500/10 rounded-full blur-3xl" />
+
           <CurvedLoop
-            marqueeText="DASCA ✦ DOESN'T ✦ DISAPPOINTS ✦ "
+            marqueeText="DASCA ✦ DOESN'T ✦ DISAPPOINT ✦ "
             speed={3}
             curveAmount={350}
             direction="right"

@@ -16,7 +16,7 @@ import {
 
 export type PositionType = "head" | "co-head";
 export type YearType = "2025-26" | "2024-25" | "2023-24" | "2022-23";
-export type DomainType = 
+export type DomainType =
   | "all-domains"
   | "leadership"
   | "executive-members"
@@ -93,7 +93,7 @@ const CommitteeMembersCarousel = ({
   // Calculate counts
   const counts = useMemo(() => {
     const yearFiltered = members.filter(m => m.year === activeYear);
-    
+
     const domainFiltered = activeDomain === "all-domains"
       ? yearFiltered
       : yearFiltered.filter(m => m.domain === activeDomain);
@@ -168,7 +168,7 @@ const CommitteeMembersCarousel = ({
     <div className="relative w-full">
       {/* Background Extension */}
       <div className="absolute inset-x-0 top-0 bottom-0 bg-gradient-to-br from-gray-50 via-white to-gray-50 -z-10" />
-      
+
       <div className="space-y-8 pb-20 pt-8">
         {/* Filters Row - Year + Domain */}
         <div className="flex flex-wrap items-center justify-center gap-4 px-4">
@@ -204,11 +204,11 @@ const CommitteeMembersCarousel = ({
               <span>
                 {domains.find(d => d.value === activeDomain)?.label}
               </span>
-              <ChevronDown 
+              <ChevronDown
                 className={cn(
                   "w-4 h-4 transition-transform duration-300",
                   showDomainDropdown && "rotate-180"
-                )} 
+                )}
               />
             </button>
 
@@ -320,11 +320,11 @@ const CommitteeMembersCarousel = ({
           plugins={
             autoplay
               ? [
-                  Autoplay({
-                    delay: 2000,
-                    stopOnInteraction: true,
-                  }),
-                ]
+                Autoplay({
+                  delay: 2000,
+                  stopOnInteraction: true,
+                }),
+              ]
               : []
           }
         >
@@ -337,7 +337,7 @@ const CommitteeMembersCarousel = ({
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ 
+                  transition={{
                     duration: 0.4,
                     ease: [0.25, 0.46, 0.45, 0.94]
                   }}
@@ -349,12 +349,12 @@ const CommitteeMembersCarousel = ({
                       {!imageLoaded[member.id] && (
                         <div className="absolute inset-0 bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200 animate-pulse" />
                       )}
-                      
+
                       <img
                         src={member.image}
                         alt={member.name}
                         className={cn(
-                          "h-full w-full object-cover transition-opacity duration-300",
+                          "h-full w-full object-cover object-center transition-opacity duration-300",
                           imageLoaded[member.id] ? "opacity-100" : "opacity-0"
                         )}
                         loading={index < 3 ? "eager" : "lazy"}

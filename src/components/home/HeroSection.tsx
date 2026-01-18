@@ -11,6 +11,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
+  // --- 1. Enhanced Theme Configuration ---
   const themes = {
     light: {
       background: "#ffffff",
@@ -19,8 +20,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
       pulseColor: "#2563EB",
       textMain: "text-gray-900",
       textSub: "text-gray-600",
-      gradient: "from-blue-600 to-purple-600",
+      gradient: "from-blue-600 to-gray-900",
       overlay: "from-white/60 via-transparent to-white/90",
+      buttonSecondary:
+        "border-gray-300 text-gray-600 hover:border-blue-600 hover:text-blue-600",
+      badge: "border-blue-600/20 bg-blue-50 text-blue-600",
     },
     dark: {
       background: "#030712",
@@ -31,11 +35,15 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
       textSub: "text-gray-400",
       gradient: "from-blue-400 to-cyan-300",
       overlay: "from-black/40 via-transparent to-black/90",
+      buttonSecondary:
+        "border-gray-700 text-gray-300 hover:border-cyan-400 hover:text-cyan-400",
+      badge: "border-cyan-500/30 bg-cyan-900/10 text-cyan-400",
     },
   };
 
   const currentTheme = isDarkMode ? themes.dark : themes.light;
 
+  // --- 2. Canvas Logic ---
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -159,9 +167,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
 
           if (dist < connectionDistance) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(${currentTheme.lineColor}, ${
-              1 - dist / connectionDistance
-            })`;
+            ctx.strokeStyle = `rgba(${currentTheme.lineColor}, ${1 - dist / connectionDistance
+              })`;
             ctx.lineWidth = 1;
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
@@ -177,9 +184,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
           const distMouse = Math.hypot(p.x - mouse.x, p.y - mouse.y);
           if (distMouse < 200) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(${currentTheme.lineColor}, ${
-              1 - distMouse / 200
-            })`;
+            ctx.strokeStyle = `rgba(${currentTheme.lineColor}, ${1 - distMouse / 200
+              })`;
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(mouse.x, mouse.y);
             ctx.stroke();
@@ -219,21 +225,24 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
     };
   }, [isDarkMode, currentTheme]);
 
+  // --- 3. Render ---
   return (
     <div
-      className={`relative w-full h-screen overflow-hidden flex flex-col items-center justify-center transition-colors duration-500 ${
-        isDarkMode ? "bg-[#030712]" : "bg-white"
-      }`}
+      className={`relative w-full h-screen overflow-hidden flex flex-col items-center justify-center transition-colors duration-500 ${isDarkMode ? "bg-[#030712]" : "bg-white"
+        }`}
     >
-      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-0" />
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full z-0"
+      />
 
       <div
         className={`absolute inset-0 z-0 pointer-events-none bg-gradient-to-b ${currentTheme.overlay}`}
       />
 
-      {/* 💎 MATURE, PROFESSIONAL CONTENT - EXACT SAME WORDING */}
+      {/* Content */}
       <div className="relative z-10 text-center px-6 max-w-7xl mx-auto">
-        
+
         {/* Main Headline - SOPHISTICATED TYPOGRAPHY */}
         <h1
           className={`text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-black mb-6 tracking-tight leading-[1.1] ${currentTheme.textMain}`}
@@ -277,6 +286,12 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
         <button
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
+          onClick={() => {
+            window.scrollTo({
+              top: window.innerHeight,
+              behavior: 'smooth'
+            });
+          }}
           className="group relative px-10 py-5 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-lg font-semibold rounded-full shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] inline-flex items-center gap-3 overflow-hidden"
           style={{
             fontFamily: "'Inter', sans-serif",
@@ -284,15 +299,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
           }}
         >
           {/* Subtle hover gradient shift */}
-          <div 
+          <div
             className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
           />
-          
+
           <span className="relative z-10">Explore DASCA</span>
           <ArrowRight
-            className={`relative z-10 transition-transform duration-300 ${
-              isHovered ? "translate-x-1" : ""
-            }`}
+            className={`relative z-10 transition-transform duration-300 ${isHovered ? "translate-x-1" : ""
+              }`}
             size={20}
             strokeWidth={2.5}
           />
@@ -301,10 +315,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
 
       {/* Scroll Indicator - MINIMAL & REFINED */}
       <div className="absolute bottom-10 animate-bounce-gentle z-10 opacity-40 hover:opacity-100 transition-opacity duration-300">
-        <ChevronDown 
-          className={currentTheme.textSub} 
-          size={32} 
-          strokeWidth={1.5} 
+        <ChevronDown
+          className={currentTheme.textSub}
+          size={32}
+          strokeWidth={1.5}
         />
       </div>
 

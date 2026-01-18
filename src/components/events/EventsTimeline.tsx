@@ -191,7 +191,7 @@ const EventsTimeline = () => {
                 height: heightTransform,
                 opacity: opacityTransform,
               }}
-              className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-b from-teal-500 via-cyan-400 to-transparent rounded-full z-10"
+              className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-b from-purple-600 via-violet-400 to-transparent rounded-full z-10"
             />
           </div>
         </div>

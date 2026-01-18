@@ -19,7 +19,7 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        heading: ['Outfit', 'Space Grotesk', 'sans-serif'], 
+        heading: ['Outfit', 'Space Grotesk', 'sans-serif'],
         body: ['Inter', 'sans-serif'],
       },
       colors: {
@@ -57,8 +57,8 @@ const config: Config = {
           foreground: "hsl(var(--card-foreground))",
         },
         brand: {
-          teal: "#0D9488",
-          cyan: "#2DD4BF",
+          teal: "#8B5CF6",
+          cyan: "#A78BFA",
           slate: "#64748B",
           dark: "#0F172A",
         },

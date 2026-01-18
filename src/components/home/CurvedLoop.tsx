@@ -41,8 +41,8 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
   const textLength = spacing;
   const totalText = textLength
     ? Array(Math.ceil(1800 / textLength) + 2)
-        .fill(text)
-        .join('')
+      .fill(text)
+      .join('')
     : text;
   const ready = spacing > 0;
 
@@ -104,7 +104,7 @@ const CurvedLoop: FC<CurvedLoopProps> = ({
   const endDrag = () => {
     if (!interactive) return;
     dragRef.current = false;
-    dirRef.current = velRef.current > 0 ? 'right' : 'left';
+    // Direction stays locked to initial prop - no random changes
   };
 
   const cursorStyle = interactive ? (dragRef.current ? 'grabbing' : 'grab') : 'auto';

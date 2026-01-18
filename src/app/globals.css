@@ -234,12 +234,12 @@ html {
 /* Custom Gradient Text */
 @layer utilities {
   .text-gradient-teal {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-slate-700 via-teal-600 to-cyan-500;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-700 via-purple-600 to-violet-500;
   }
 
   .hero-pattern-bg {
     background-color: #F9FAFB;
-    background-image: radial-gradient(circle at 50% 50%, rgba(45, 212, 191, 0.05) 0%, transparent 60%);
+    background-image: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.05) 0%, transparent 60%);
   }
 }
 

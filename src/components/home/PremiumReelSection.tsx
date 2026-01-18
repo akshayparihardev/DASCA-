@@ -150,7 +150,7 @@ const PremiumReelSection: React.FC<PremiumReelSectionProps> = ({ isDarkMode }) =
   /* ---------------- SEEK FUNCTIONALITY ---------------- */
   const handleSeek2026 = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!video2026Ref.current || !video2026Ref.current.duration) return;
-    
+
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const percentage = x / rect.width;
@@ -159,7 +159,7 @@ const PremiumReelSection: React.FC<PremiumReelSectionProps> = ({ isDarkMode }) =
 
   const handleSeek2025 = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!video2025Ref.current || !video2025Ref.current.duration) return;
-    
+
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const percentage = x / rect.width;
@@ -220,6 +220,7 @@ const PremiumReelSection: React.FC<PremiumReelSectionProps> = ({ isDarkMode }) =
           muted={isMuted}
           playsInline
           preload="auto"
+          controlsList="nodownload"
         >
           <source src={`/committee-reel-${year}.mp4`} type="video/mp4" />
         </video>
@@ -459,7 +460,10 @@ const PremiumReelSection: React.FC<PremiumReelSectionProps> = ({ isDarkMode }) =
             animate={{ opacity: 1, scale: 1 }}
             src={`/committee-reel-${fullscreenVideo}.mp4`}
             controls
+            controlsList="nodownload"
             autoPlay
+            loop
+            preload="auto"
             className="w-full max-w-7xl rounded-3xl shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)]"
             onClick={(e) => e.stopPropagation()}
           />
