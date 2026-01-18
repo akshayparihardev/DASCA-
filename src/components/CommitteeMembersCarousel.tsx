@@ -4,6 +4,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Filter, ChevronDown } from "lucide-react";
 import React, { useEffect, useState, useMemo } from "react";
+import Image from "next/image";
 
 import { cn } from "@/lib/utils";
 
@@ -350,15 +351,16 @@ const CommitteeMembersCarousel = ({
                         <div className="absolute inset-0 bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200 animate-pulse" />
                       )}
 
-                      <img
+                      <Image
                         src={member.image}
                         alt={member.name}
+                        fill
                         className={cn(
-                          "h-full w-full object-cover object-center transition-opacity duration-300",
+                          "object-cover object-center transition-opacity duration-300",
                           imageLoaded[member.id] ? "opacity-100" : "opacity-0"
                         )}
-                        loading={index < 3 ? "eager" : "lazy"}
-                        decoding="async"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        priority={index < 3}
                         onLoad={() => handleImageLoad(member.id)}
                       />
                       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80" />
