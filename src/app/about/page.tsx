@@ -1,15 +1,3 @@
-import { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'About DASCA - Data Science Association RBU',
-  description: 'Learn about DASCA, the official Data Science Association of Ramdeobaba University. Our mission, vision, and 5+ years of excellence in fostering innovation and empowering 2000+ students.',
-  openGraph: {
-    title: 'About DASCA - Data Science Association',
-    description: 'Discover the story behind DASCA and our mission at Ramdeobaba University, Nagpur',
-    url: 'https://dasca.in/about',
-  },
-}
-
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";

@@ -1,10 +1,3 @@
-import { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'DASCA - Data Science Association | Ramdeobaba University',
-  description: 'Join 2000+ students at DASCA RBU. 50+ annual events including tech workshops, cultural festivals, and sports championships. Empowering innovation through data science.',
-}
-
 'use client';
 
 import { useState, useEffect } from 'react';
