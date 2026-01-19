@@ -71,7 +71,7 @@ const eventsData: Record<string, TimelineEvent[]> = {
         "The formal induction of the new committee and the beginning of the academic year.",
       fullDescription:
         "The DASCA Installation Ceremony 2024 marked the formal induction of the new committee and the beginning of the academic year. The event featured inspiring addresses by faculty and industry experts, discussions on emerging trends in Data Science, and the announcement of key collaborations. It laid a strong foundation for leadership, innovation, and collaborative learning within the data science community.",
-      image: "Installation24.JPG",
+      image: "Installation24.jpg",
       type: "Formal Induction & Academic Roadmap",
     },
     {
