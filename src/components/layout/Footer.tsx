@@ -11,7 +11,7 @@ const Footer = () => {
   const quotes = [
     "Innovation",
     "Excellence",
-    "Connections",
+    "Networking",
     "Inspiration",
   ];
 
@@ -223,7 +223,7 @@ const Footer = () => {
 
             {/* JOIN Button - Enhanced */}
             <button
-              className="group relative h-[75px] w-full md:w-[240px] rounded-full flex items-center justify-center font-bold tracking-[0.2em] text-[0.9rem] overflow-hidden cursor-pointer uppercase transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] hover:w-full hover:max-w-full md:hover:max-w-[420px] hover:justify-start hover:pl-10 shadow-lg hover:shadow-2xl bg-white/90 border-2 border-white/30 shadow-xl text-black hover:bg-white hover:border-white hover:shadow-2xl"
+              className="group relative h-[75px] w-full md:w-[240px] rounded-full flex items-center justify-center font-bold tracking-[0.2em] text-[0.9rem] overflow-hidden cursor-pointer uppercase transition-all duration-500 ease-out hover:w-full hover:max-w-full md:hover:max-w-[420px] hover:justify-start hover:pl-10 shadow-lg hover:shadow-2xl bg-white/90 border-2 border-white/30 shadow-xl text-black hover:bg-white hover:border-white hover:shadow-2xl"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
               <span className="z-10 transition-all duration-400">JOIN NOW</span>

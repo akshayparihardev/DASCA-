@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import {
   Dialog,
   DialogContent,
@@ -30,13 +31,19 @@ const EventCard = ({
   isUpcoming = false,
 }: EventCardProps) => {
   return (
-    <div className="group h-full flex flex-col bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden hover:shadow-lg transition-all duration-300">
+    <div
+      className="group h-full flex flex-col bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden hover:shadow-lg transition-all duration-300"
+      data-testid="event-card"
+    >
       {/* Image Section */}
       <div className="relative h-52 overflow-hidden">
-        <img
+        <Image
           src={image}
           alt={title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
+          loading="lazy"
         />
         {/* Upcoming Badge */}
         {isUpcoming && (
@@ -57,14 +64,14 @@ const EventCard = ({
         <h3 className="font-heading text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-2 leading-tight">
           {title}
         </h3>
-        
+
         {/* Type / Category (Teal Text) */}
         {type && (
           <span className="text-brand-teal text-sm font-semibold mb-3 block">
             {type}
           </span>
         )}
-        
+
         <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed line-clamp-3 mb-6 flex-grow">
           {description}
         </p>
@@ -75,30 +82,37 @@ const EventCard = ({
             <Button
               variant="outline"
               className="w-fit border-brand-teal/30 text-brand-teal hover:bg-brand-teal hover:text-white transition-colors rounded-full px-6 group/btn"
+              data-testid="event-learn-more"
             >
               Learn More
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
             </Button>
           </DialogTrigger>
-          
+
           <DialogContent className="max-w-2xl bg-white dark:bg-zinc-900 border-zinc-200 dark:border-zinc-800 p-0 overflow-hidden">
             <div className="relative h-64 w-full">
-               <img src={image} alt={title} className="w-full h-full object-cover" />
-               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-               <DialogHeader className="absolute bottom-4 left-6 right-6 text-white">
-                 <DialogTitle className="font-heading text-2xl md:text-3xl font-bold">{title}</DialogTitle>
-                 {type && <p className="text-brand-cyan font-medium mt-1">{type}</p>}
-               </DialogHeader>
+              <Image
+                src={image}
+                alt={title}
+                fill
+                sizes="(max-width: 768px) 100vw, 672px"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <DialogHeader className="absolute bottom-4 left-6 right-6 text-white">
+                <DialogTitle className="font-heading text-2xl md:text-3xl font-bold">{title}</DialogTitle>
+                {type && <p className="text-brand-cyan font-medium mt-1">{type}</p>}
+              </DialogHeader>
             </div>
-            
+
             <div className="p-6 md:p-8 space-y-4">
               <p className="text-zinc-600 dark:text-zinc-300 leading-relaxed text-base md:text-lg">
                 {fullDescription || description}
               </p>
               {date && (
-                 <div className="inline-flex items-center px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 text-sm font-medium">
-                   Event Date: {date}
-                 </div>
+                <div className="inline-flex items-center px-3 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 text-sm font-medium">
+                  Event Date: {date}
+                </div>
               )}
             </div>
           </DialogContent>

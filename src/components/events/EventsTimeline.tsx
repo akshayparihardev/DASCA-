@@ -22,7 +22,7 @@ const eventsData: Record<string, TimelineEvent[]> = {
         "Returning with greater enthusiasm, DSPL continued to strengthen student engagement through competitive cricket and collaborative team spirit.",
       fullDescription:
         "Building on the success of its inaugural edition, the Data Science Premier League (DSPL) returned as a vibrant cricket tournament organized by DASCA. With student-led teams and a structured league format, the event emphasized leadership, coordination, and inclusivity. DSPL further reinforced community bonding by blending sportsmanship with excitement, making it a memorable experience for participants and spectators alike.",
-      image: "DSPL2.jpeg",
+      image: "/DSPL2.jpeg",
       type: "Data Science Premier League",
     },
   ],
@@ -42,7 +42,7 @@ const eventsData: Record<string, TimelineEvent[]> = {
         "The formal induction of the new committee and the launch of initiatives for the academic year.",
       fullDescription:
         "The DASCA Installation Ceremony 2025 marked the formal induction of the new committee and the launch of initiatives for the academic year. The event featured addresses by faculty members and student leaders, highlighting DASCA's journey, vision, and future roadmap. Insightful discussions on technology trends and leadership set the tone for a year focused on learning, innovation, and collaboration.",
-      image: "Installation25.JPG",
+      image: "/Installation25.JPG",
       type: "Committee Induction & Vision Launch",
     },
     {
@@ -51,7 +51,7 @@ const eventsData: Record<string, TimelineEvent[]> = {
         "Insightful alumni interaction with former club president and industry professional Aadi Amit Ringay.",
       fullDescription:
         "DASCA hosted an insightful alumni interaction with former club president and industry professional Aadi Amit Ringay (SDE, Amadeus). The session focused on placement preparation, core technical subjects, internships, and interview strategies. Students actively engaged in discussions, gaining practical guidance and motivation for their career journeys.",
-      image: "Alumni talk.JPG",
+      image: "/Alumni talk.JPG",
       type: "Career Guidance & Mentorship",
     },
     {
@@ -60,7 +60,7 @@ const eventsData: Record<string, TimelineEvent[]> = {
         "Hands-on training session focused on strengthening Python and SQL fundamentals for placement readiness.",
       fullDescription:
         "This hands-on training session focused on strengthening Python and SQL fundamentals for placement readiness. The session included concept coverage, live problem-solving, assessments, and a mini project (Expense Tracker Platform). High engagement, practical exposure, and positive feedback highlighted the session's strong impact on student learning.",
-      image: "Tech session.jpeg",
+      image: "/Tech session.jpeg",
       type: "Skill Development & Placement Training",
     },
   ],
@@ -71,7 +71,7 @@ const eventsData: Record<string, TimelineEvent[]> = {
         "The formal induction of the new committee and the beginning of the academic year.",
       fullDescription:
         "The DASCA Installation Ceremony 2024 marked the formal induction of the new committee and the beginning of the academic year. The event featured inspiring addresses by faculty and industry experts, discussions on emerging trends in Data Science, and the announcement of key collaborations. It laid a strong foundation for leadership, innovation, and collaborative learning within the data science community.",
-      image: "Installation24.jpg",
+      image: "/Installation24.jpg",
       type: "Formal Induction & Academic Roadmap",
     },
     {
@@ -80,7 +80,7 @@ const eventsData: Record<string, TimelineEvent[]> = {
         "A vibrant student-led fest featuring a mix of technical activities, competitions, and cultural events.",
       fullDescription:
         "Aakruti'24 was a vibrant student-led fest featuring a mix of technical activities, competitions, and cultural events. The event encouraged creativity, teamwork, and student engagement across batches and departments, strengthening DASCA's role in fostering both technical growth and campus culture.",
-      image: "Aakruti24.jpeg",
+      image: "/Aakruti24.jpeg",
       type: "Technical & Cultural Fest",
     },
   ],
@@ -91,7 +91,7 @@ const eventsData: Record<string, TimelineEvent[]> = {
         "The formal establishment of the committee for the academic year with vision setting.",
       fullDescription:
         "The DASCA Installation Ceremony 2023 marked the formal establishment of the committee for the academic year. The event introduced the club's vision, objectives, and upcoming initiatives while emphasizing the importance of data science in modern technology. Faculty guidance and student participation set a collaborative tone for the year ahead.",
-      image: "Installation23.JPG",
+      image: "/Installation23.JPG",
       type: "Committee Induction & Vision Setting",
     },
     {
@@ -100,7 +100,7 @@ const eventsData: Record<string, TimelineEvent[]> = {
         "DSPL is DASCA’s inter-batch cricket tournament that brings data science students together through sportsmanship, teamwork, and healthy competition.",
       fullDescription:
         "The Data Science Premier League (DSPL) is a sports initiative by DASCA, designed to foster unity and collaboration among data science students. Inspired by professional cricket leagues, the event introduced a league-style format that encouraged leadership, strategic thinking, and active participation. DSPL successfully created an energetic platform where students connected beyond academics through the shared spirit of cricket.",
-      image: "DSPL1.jpeg",
+      image: "/DSPL1.jpeg",
       type: "Data Science Premier League",
     },
   ],

@@ -107,13 +107,14 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="min-h-screen font-sans selection:bg-blue-500/20 selection:text-blue-900" style={{ backgroundColor: theme.bg }}>
+    <div className="min-h-screen font-sans selection:bg-blue-500/20 selection:text-blue-900" style={{ backgroundColor: theme.bg }} data-testid="about-page">
 
       {/* HERO SECTION */}
       <motion.section
         ref={heroRef}
         style={{ opacity, scale }}
         className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-slate-950"
+        data-testid="about-hero"
       >
         {/* Background - Refined Gradients & Noise */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black">

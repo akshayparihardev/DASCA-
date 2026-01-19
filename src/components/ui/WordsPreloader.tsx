@@ -97,7 +97,7 @@ export default function WordsPreloader({ finishLoading }: { finishLoading?: () =
 
       {/* Words Container */}
       <div className="absolute z-10 flex items-center gap-2">
-        <span className="text-white text-xl md:text-2xl">•</span>
+        <span className="text-white text-xl md:text-2xl"></span>
         <AnimatePresence mode="wait">
           <motion.p
             key={words[index]}

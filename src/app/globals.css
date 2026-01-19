@@ -116,10 +116,10 @@
   src: url('/fonnts.com-Aeonik-Regular.ttf'); 
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: swap; /* Optimize font loading */
 }
 
-/* Import Google Fonts */
+/* Import Google Fonts with display=swap */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700&display=swap');
 
 /* ==================== GLOBAL STYLES ==================== */
@@ -261,3 +261,40 @@ html {
   }
 }
 
+/* ==================== PERFORMANCE OPTIMIZATIONS ==================== */
+
+/* GPU Acceleration for transforms and opacity */
+.transform-gpu {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Optimize animations */
+@media (prefers-reduced-motion: no-preference) {
+  .animate-smooth {
+    will-change: transform, opacity;
+  }
+}
+
+/* Reduce animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Optimize image rendering */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Contain layout shifts */
+.contain-layout {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}

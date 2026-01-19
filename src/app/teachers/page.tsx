@@ -16,53 +16,33 @@ export default function TeachersPage() {
     });
 
     const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-    const scale = useTransform(scrollYProgress, [0, 0.5], [1, 1.05]);
-    const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
 
     return (
-        <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-300">
+        <div
+            className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-300"
+            data-testid="teachers-page"
+        >
 
-            {/* Hero Section */}
+            {/* Hero Section - Optimized */}
             <motion.section
                 ref={heroRef}
                 style={{ opacity }}
                 className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-300"
+                data-testid="teachers-hero"
             >
-                {/* Animated Background Elements */}
-                <div className="absolute inset-0">
-                    {/* Gradient Orbs */}
-                    <motion.div
+                {/* Simplified Background - CSS Only */}
+                <div className="absolute inset-0 opacity-30">
+                    {/* Static gradient orbs - no animation */}
+                    <div
                         className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full"
                         style={{
-                            background: "radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%)",
-                            y,
-                            scale
-                        }}
-                        animate={{
-                            x: [0, 100, 0],
-                            y: [0, -50, 0],
-                        }}
-                        transition={{
-                            duration: 20,
-                            repeat: Infinity,
-                            ease: "easeInOut"
+                            background: "radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%)",
                         }}
                     />
-                    <motion.div
+                    <div
                         className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full"
                         style={{
-                            background: "radial-gradient(circle, rgba(168,85,247,0.1) 0%, transparent 70%)",
-                            y,
-                            scale
-                        }}
-                        animate={{
-                            x: [0, -100, 0],
-                            y: [0, 50, 0],
-                        }}
-                        transition={{
-                            duration: 25,
-                            repeat: Infinity,
-                            ease: "easeInOut"
+                            background: "radial-gradient(circle, rgba(168,85,247,0.15) 0%, transparent 70%)",
                         }}
                     />
 
@@ -77,17 +57,13 @@ export default function TeachersPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
                     >
-                        {/* Icon with Glow Effect */}
-                        <motion.div
-                            className="inline-flex items-center justify-center mb-6"
-                            animate={{ y: [0, -10, 0] }}
-                            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                        >
+                        {/* Icon - Static */}
+                        <div className="inline-flex items-center justify-center mb-6">
                             <div className="relative">
                                 <div className="absolute inset-0 bg-blue-200 dark:bg-blue-500/20 blur-3xl rounded-full opacity-50" />
                                 <GraduationCap className="relative w-14 h-14 text-blue-600 dark:text-blue-400" strokeWidth={1.5} />
                             </div>
-                        </motion.div>
+                        </div>
 
                         {/* Title */}
                         <motion.h1

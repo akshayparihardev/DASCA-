@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
 
 import HeroSection from '../components/home/HeroSection';
 import CurvedLoop from '../components/home/CurvedLoop';
@@ -172,10 +173,13 @@ export default function Home() {
                     style={{ backgroundColor: theme.cardBg }}
                   >
                     <div className="relative h-64 overflow-hidden">
-                      <img
+                      <Image
                         src={activity.image}
                         alt={activity.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-110 transition-transform duration-700"
+                        loading="lazy"
                       />
                       <div
                         className={`absolute inset-0 bg-gradient-to-t ${activity.color} opacity-60 mix-blend-multiply`}
