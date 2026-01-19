@@ -298,12 +298,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
           />
 
           <span className="relative z-10">Explore DASCA</span>
-          <ArrowRight
-            className={`relative z-10 transition-transform duration-300 ${isHovered ? "translate-x-1" : ""
-              }`}
-            size={20}
-            strokeWidth={2.5}
-          />
         </div>
       </div>
 
