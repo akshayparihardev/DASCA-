@@ -34,7 +34,7 @@ const UpcomingEvents = () => {
               Upcoming Events
             </h2>
             <p className="text-zinc-500 dark:text-zinc-400 mt-4 max-w-xl text-lg">
-              Don't miss out on these exciting opportunities to learn, connect,
+              Don&apos;t miss out on these exciting opportunities to learn, connect,
               and grow with the DASCA community.
             </p>
           </div>

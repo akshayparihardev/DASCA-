@@ -65,7 +65,7 @@ const Footer = () => {
     }, QUOTE_CHANGE_SPEED);
 
     return () => clearInterval(quoteInterval);
-  }, []);
+  }, [quotes.length]);
 
   const handleLike = (e: React.MouseEvent) => {
     if (!liked) {

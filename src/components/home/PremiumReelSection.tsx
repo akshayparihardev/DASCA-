@@ -274,7 +274,11 @@ const PremiumReelSection: React.FC<PremiumReelSectionProps> = ({ isDarkMode }) =
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  isPlaying ? onPause() : onPlay();
+                  if (isPlaying) {
+                    onPause();
+                  } else {
+                    onPlay();
+                  }
                 }}
                 className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-xl border border-white/30 flex items-center justify-center hover:bg-white/30 transition-all cursor-pointer"
               >

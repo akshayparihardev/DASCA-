@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 import HeroSection from '../components/home/HeroSection';
@@ -37,12 +37,7 @@ export default function Home() {
     accent: isDarkMode ? '#8B5CF6' : '#6366F1',
   };
 
-  const stats = [
-    { value: '50+', label: 'Events Annually', icon: Sparkles },
-    { value: '2000+', label: 'Active Students', icon: Users },
-    { value: '100+', label: 'Committee Members', icon: TrendingUp },
-    { value: '5+', label: 'Years of Excellence', icon: Zap },
-  ];
+
 
   const activities = [
     {
@@ -134,7 +129,7 @@ export default function Home() {
                 className="text-5xl md:text-7xl font-black mb-8 tracking-tight"
                 style={{ color: theme.text }}
               >
-                We Don't Just Organize Events,
+                We Don&apos;t Just Organize Events,
                 <br />
                 <span className="bg-gradient-to-r from-violet-500 via-fuchsia-500 to-cyan-500 bg-clip-text text-transparent">
                   We Create Experiences

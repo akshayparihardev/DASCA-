@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 interface HeroSectionProps {
   isDarkMode: boolean;
@@ -9,7 +9,7 @@ interface HeroSectionProps {
 
 const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
+
 
   // --- 1. Enhanced Theme Configuration ---
   const themes = {
@@ -52,8 +52,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
 
     let animationFrameId: number;
     let w: number, h: number;
-    let particles: any[] = [];
-    let pulses: any[] = [];
+    let particles: Particle[] = [];
+    let pulses: Pulse[] = [];
     const mouse = { x: null as number | null, y: null as number | null };
 
     const isMobile = window.innerWidth < 768;
@@ -109,13 +109,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
     }
 
     class Pulse {
-      p1: any;
-      p2: any;
+      p1: Particle;
+      p2: Particle;
       progress: number;
       speed: number;
       dead: boolean;
 
-      constructor(p1: any, p2: any) {
+      constructor(p1: Particle, p2: Particle) {
         this.p1 = p1;
         this.p2 = p2;
         this.progress = 0;
@@ -284,8 +284,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
 
         {/* CTA Button - SOPHISTICATED DESIGN */}
         <div
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+
           className="group relative px-10 py-5 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-lg font-semibold rounded-full shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 hover:scale-[1.02] inline-flex items-center gap-3 overflow-hidden"
           style={{
             fontFamily: "'Inter', sans-serif",

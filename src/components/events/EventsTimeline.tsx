@@ -146,7 +146,7 @@ const EventsTimeline = () => {
 
         <div ref={rectRef} className="relative pb-20">
           {/* --- CONTENT MAPPING --- */}
-          {Object.entries(eventsData).reverse().map(([year, events], index) => (
+          {Object.entries(eventsData).reverse().map(([year, events]) => (
             <div
               key={year}
               className="flex justify-start pt-10 md:pt-40 md:gap-10"
