@@ -283,16 +283,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
         </p>
 
         {/* CTA Button - SOPHISTICATED DESIGN */}
-        <button
+        <div
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          onClick={() => {
-            window.scrollTo({
-              top: window.innerHeight,
-              behavior: 'smooth'
-            });
-          }}
-          className="group relative px-10 py-5 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-lg font-semibold rounded-full shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] inline-flex items-center gap-3 overflow-hidden"
+          className="group relative px-10 py-5 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-lg font-semibold rounded-full shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 hover:scale-[1.02] inline-flex items-center gap-3 overflow-hidden"
           style={{
             fontFamily: "'Inter', sans-serif",
             letterSpacing: "0.01em"
@@ -310,7 +304,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
             size={20}
             strokeWidth={2.5}
           />
-        </button>
+        </div>
       </div>
 
       {/* Scroll Indicator - MINIMAL & REFINED */}

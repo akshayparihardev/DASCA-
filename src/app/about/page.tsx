@@ -1,17 +1,17 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { 
-  Target, 
-  Eye, 
-  Heart, 
-  Lightbulb, 
-  Users, 
-  BookOpen, 
-  ShieldCheck, 
-  Laptop, 
-  GraduationCap, 
-  Music 
+import {
+  Target,
+  Eye,
+  Heart,
+  Lightbulb,
+  Users,
+  BookOpen,
+  ShieldCheck,
+  Laptop,
+  GraduationCap,
+  Music
 } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 
@@ -108,9 +108,9 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen font-sans selection:bg-blue-500/20 selection:text-blue-900" style={{ backgroundColor: theme.bg }}>
-      
+
       {/* HERO SECTION */}
-      <motion.section 
+      <motion.section
         ref={heroRef}
         style={{ opacity, scale }}
         className="relative min-h-[85vh] flex items-center justify-center overflow-hidden bg-slate-950"
@@ -118,7 +118,7 @@ export default function AboutPage() {
         {/* Background - Refined Gradients & Noise */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black">
           <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-soft-light"></div>
-          
+
           <div className="absolute inset-0 opacity-30">
             <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-600/40 rounded-full mix-blend-screen filter blur-[100px] animate-blob" />
             <div className="absolute top-[20%] right-[-10%] w-[400px] h-[400px] bg-cyan-500/30 rounded-full mix-blend-screen filter blur-[80px] animate-blob animation-delay-2000" />
@@ -135,7 +135,7 @@ export default function AboutPage() {
             <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-slate-400 mb-6 tracking-tight">
               ABOUT US
             </h1>
-            
+
             <div className="flex items-center justify-center gap-6 mb-10 opacity-80">
               <div className="h-px w-16 bg-gradient-to-r from-transparent via-blue-400 to-transparent" />
               <p className="text-xl md:text-2xl text-blue-100 font-light tracking-[0.4em] uppercase">
@@ -143,7 +143,7 @@ export default function AboutPage() {
               </p>
               <div className="h-px w-16 bg-gradient-to-r from-transparent via-blue-400 to-transparent" />
             </div>
-            
+
             <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed font-light">
               Fostering knowledge, innovation, and collaboration in <span className="text-blue-200 font-normal">Data Science & Analytics</span>.
             </p>
@@ -151,7 +151,7 @@ export default function AboutPage() {
         </div>
 
         {/* Scroll Indicator */}
-        <motion.div 
+        <motion.div
           className="absolute bottom-12 left-1/2 -translate-x-1/2"
           animate={{ y: [0, 8, 0], opacity: [0.5, 1, 0.5] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -187,13 +187,13 @@ export default function AboutPage() {
             <p className="first-letter:text-5xl first-letter:font-bold first-letter:mr-3 first-letter:float-left" style={{ color: theme.text }}>
               DASCA (Data Science Association) is a student-led technical club dedicated to fostering knowledge, innovation, and collaboration in the domain of data science and analytics.
             </p>
-            
+
             <p>
               The club aims to create a vibrant learning ecosystem where students can enhance their technical skills, explore real-world applications, and stay updated with the latest industry trends.
             </p>
 
             <div className="p-6 rounded-r-lg border-l-4 border-blue-500 italic" style={{ backgroundColor: theme.bg, color: theme.text }}>
-              "We function as a bridge between academic theory and practical application—providing a platform to dive deep into visualization, ML, and statistical analysis."
+              &quot;We function as a bridge between academic theory and practical application—providing a platform to dive deep into visualization, ML, and statistical analysis.&quot;
             </div>
           </motion.div>
         </div>
@@ -203,7 +203,7 @@ export default function AboutPage() {
       <section className="py-24 px-6" style={{ backgroundColor: theme.bg }}>
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-            
+
             {/* Vision - WITH GLOW EFFECT */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -229,7 +229,7 @@ export default function AboutPage() {
                 <div className="w-14 h-14 bg-blue-50 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300">
                   <Eye className="w-7 h-7 text-blue-600" />
                 </div>
-                
+
                 <h3 className="text-3xl font-bold mb-4 tracking-tight" style={{ color: theme.text }}>Our Vision</h3>
                 <p className="leading-relaxed" style={{ color: theme.textSub }}>
                   To build a strong community of data science enthusiasts who are equipped with analytical thinking, technical expertise, and ethical values to solve real-world problems.
@@ -310,9 +310,8 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className={`group relative ${
-                   index >= 3 ? "lg:col-span-1 lg:mx-auto lg:w-full lg:max-w-md" : ""
-                }`}
+                className={`group relative ${index >= 3 ? "lg:col-span-1 lg:mx-auto lg:w-full lg:max-w-md" : ""
+                  }`}
                 style={{ padding: '4px' }}
               >
                 {/* 🔥 GLOW EFFECT */}
@@ -329,10 +328,10 @@ export default function AboutPage() {
                   style={{ backgroundColor: theme.bg, border: `1px solid ${theme.border}` }}
                 >
                   <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg border group-hover:scale-110 transition-transform duration-300"
-                    style={{ 
-                      backgroundColor: theme.cardBg, 
+                    style={{
+                      backgroundColor: theme.cardBg,
                       borderColor: theme.border,
-                      color: theme.text 
+                      color: theme.text
                     }}>
                     <value.icon className="w-6 h-6" />
                   </div>
@@ -353,8 +352,8 @@ export default function AboutPage() {
       <section className="py-24 px-6 relative overflow-hidden" style={{ backgroundColor: isDarkMode ? '#0f172a' : '#f1f5f9' }}>
         {/* Abstract Background */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10 pointer-events-none">
-             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-900/40 rounded-full blur-[100px]" />
-             <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-900/40 rounded-full blur-[100px]" />
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-900/40 rounded-full blur-[100px]" />
+          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-900/40 rounded-full blur-[100px]" />
         </div>
 
         <div className="max-w-6xl mx-auto relative z-10">
@@ -392,15 +391,15 @@ export default function AboutPage() {
 
                 <div
                   className="relative p-8 rounded-2xl backdrop-blur-sm hover:shadow-xl transition-all duration-300"
-                  style={{ 
+                  style={{
                     backgroundColor: theme.cardBg,
                     border: `1px solid ${theme.border}`
                   }}
                 >
                   <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
-                    style={{ 
+                    style={{
                       backgroundColor: theme.bg,
-                      color: theme.accent 
+                      color: theme.accent
                     }}>
                     <item.icon className="w-6 h-6" />
                   </div>

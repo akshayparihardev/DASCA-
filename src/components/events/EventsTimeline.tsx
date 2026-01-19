@@ -146,7 +146,7 @@ const EventsTimeline = () => {
 
         <div ref={rectRef} className="relative pb-20">
           {/* --- CONTENT MAPPING --- */}
-          {Object.entries(eventsData).map(([year, events], index) => (
+          {Object.entries(eventsData).reverse().map(([year, events], index) => (
             <div
               key={year}
               className="flex justify-start pt-10 md:pt-40 md:gap-10"
@@ -159,14 +159,14 @@ const EventsTimeline = () => {
                 </div>
 
                 {/* The Year */}
-                <h3 className="hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-slate-300 dark:text-slate-700">
+                <h3 className="hidden md:block text-xl md:pl-20 md:text-5xl font-black text-slate-700 dark:text-slate-300">
                   {year}
                 </h3>
               </div>
 
               {/* Right Column: Event Cards */}
               <div className="relative pl-20 pr-4 md:pl-4 w-full">
-                <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-slate-500">
+                <h3 className="md:hidden block text-2xl mb-4 text-left font-black text-slate-700 dark:text-slate-300">
                   {year}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -183,7 +183,7 @@ const EventsTimeline = () => {
           {/* 1. Static Gray Line (Background Track) */}
           <div
             style={{ height: height + "px" }}
-            className="absolute md:left-8 left-8 top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-slate-200 dark:via-slate-800 to-transparent to-[99%]"
+            className="absolute md:left-8 left-8 top-0 overflow-hidden w-[4px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-slate-300 dark:via-slate-700 to-transparent to-[99%]"
           >
             {/* 2. Moving Colored Beam (Foreground) */}
             <motion.div
@@ -191,7 +191,7 @@ const EventsTimeline = () => {
                 height: heightTransform,
                 opacity: opacityTransform,
               }}
-              className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-b from-purple-600 via-violet-400 to-transparent rounded-full z-10"
+              className="absolute inset-x-0 top-0 w-[4px] bg-gradient-to-b from-purple-500 via-violet-500 to-cyan-400 rounded-full shadow-lg shadow-purple-500/50"
             />
           </div>
         </div>

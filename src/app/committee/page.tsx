@@ -1,6 +1,6 @@
 "use client";
 
-import { CommitteeMembersCarousel } from "@/components/CommitteeMembersCarousel";
+import { CommitteeMembersCarousel } from "@/components/committee/CommitteeMembersCarousel";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Search, Sparkles } from "lucide-react";
 import { useState, useRef } from "react";

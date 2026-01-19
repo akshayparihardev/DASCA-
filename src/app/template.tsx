@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import WordsPreloader from '@/components/WordsPreloader'; // Adjust path if needed
+import WordsPreloader from '@/components/ui/WordsPreloader'; // Adjust path if needed
 
 export default function Template({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
