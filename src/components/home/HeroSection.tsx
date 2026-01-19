@@ -155,6 +155,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
     };
 
     const animate = () => {
+      if (!ctx) return;
+
       ctx.clearRect(0, 0, w, h);
 
       particles.forEach((p, index) => {
