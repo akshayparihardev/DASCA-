@@ -101,10 +101,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
       }
 
       draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = currentTheme.particleColor;
-        ctx.fill();
+        ctx!.beginPath();
+        ctx!.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx!.fillStyle = currentTheme.particleColor;
+        ctx!.fill();
       }
     }
 
@@ -132,17 +132,17 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
         const x = this.p1.x + (this.p2.x - this.p1.x) * this.progress;
         const y = this.p1.y + (this.p2.y - this.p1.y) * this.progress;
 
-        ctx.beginPath();
-        ctx.arc(x, y, 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = currentTheme.pulseColor;
+        ctx!.beginPath();
+        ctx!.arc(x, y, 2.5, 0, Math.PI * 2);
+        ctx!.fillStyle = currentTheme.pulseColor;
 
         if (isDarkMode) {
-          ctx.shadowBlur = 10;
-          ctx.shadowColor = currentTheme.pulseColor;
+          ctx!.shadowBlur = 10;
+          ctx!.shadowColor = currentTheme.pulseColor;
         }
 
-        ctx.fill();
-        ctx.shadowBlur = 0;
+        ctx!.fill();
+        ctx!.shadowBlur = 0;
       }
     }
 
@@ -168,13 +168,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
           const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
 
           if (dist < connectionDistance) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(${currentTheme.lineColor}, ${1 - dist / connectionDistance
+            ctx!.beginPath();
+            ctx!.strokeStyle = `rgba(${currentTheme.lineColor}, ${1 - dist / connectionDistance
               })`;
-            ctx.lineWidth = 1;
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.stroke();
+            ctx!.lineWidth = 1;
+            ctx!.moveTo(p.x, p.y);
+            ctx!.lineTo(p2.x, p2.y);
+            ctx!.stroke();
 
             if (Math.random() < pulseChance) {
               pulses.push(new Pulse(p, p2));
@@ -185,12 +185,12 @@ const HeroSection: React.FC<HeroSectionProps> = ({ isDarkMode }) => {
         if (mouse.x != null && mouse.y != null) {
           const distMouse = Math.hypot(p.x - mouse.x, p.y - mouse.y);
           if (distMouse < 200) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(${currentTheme.lineColor}, ${1 - distMouse / 200
+            ctx!.beginPath();
+            ctx!.strokeStyle = `rgba(${currentTheme.lineColor}, ${1 - distMouse / 200
               })`;
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(mouse.x, mouse.y);
-            ctx.stroke();
+            ctx!.moveTo(p.x, p.y);
+            ctx!.lineTo(mouse.x, mouse.y);
+            ctx!.stroke();
           }
         }
       });
