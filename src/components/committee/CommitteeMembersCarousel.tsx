@@ -356,7 +356,8 @@ const CommitteeMembersCarousel = ({
                           imageLoaded[member.id] ? "opacity-100" : "opacity-0"
                         )}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        priority={index < 3}
+                        priority={true}
+                        loading="eager"
                         onLoad={() => handleImageLoad(member.id)}
                       />
                       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80" />
