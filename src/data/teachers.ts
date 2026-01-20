@@ -49,4 +49,4 @@ export const teachers: Teacher[] = [
 ];
 
 // Get unique departments for filtering
-export const departments = [...new Set(teachers.map(t => t.department))];
+export const departments = Array.from(new Set(teachers.map(t => t.department)));
