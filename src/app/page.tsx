@@ -208,12 +208,12 @@ export default function Home() {
         {/* SECTION 6: CURVED LOOP */}
         <section className="relative py-32 overflow-hidden" style={{
           background: isDarkMode
-            ? 'linear-gradient(180deg, #020617 0%, #1e1b4b 50%, #020617 100%)'
+            ? 'linear-gradient(180deg, #0a0a0f 0%, #2d1b4e 50%, #0a0a0f 100%)'
             : 'linear-gradient(180deg, #FAFAFA 0%, #f3e8ff 50%, #FAFAFA 100%)'
         }}>
-          {/* Decorative elements */}
-          <div className="absolute top-10 left-10 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-10 right-10 w-40 h-40 bg-violet-500/10 rounded-full blur-3xl" />
+          {/* Decorative elements - subtle but visible */}
+          <div className="absolute top-10 left-10 w-40 h-40 bg-purple-500/15 rounded-full blur-3xl" />
+          <div className="absolute bottom-10 right-10 w-48 h-48 bg-violet-500/15 rounded-full blur-3xl" />
 
           <CurvedLoop
             marqueeText="DASCA ✦ DOESN'T ✦ DISAPPOINT ✦ "

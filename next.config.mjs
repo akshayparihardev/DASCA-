@@ -29,11 +29,15 @@ const nextConfig = {
   // Performance optimizations
   compress: true,
   poweredByHeader: false,
+  reactStrictMode: true,
 
-  // Experimental features for better performance
+  // Experimental features for MAXIMUM performance
   experimental: {
-    optimizePackageImports: ['lucide-react', 'framer-motion'],
+    optimizePackageImports: ['lucide-react', 'framer-motion', '@radix-ui/react-accordion', '@radix-ui/react-dialog'],
   },
+
+  // Disable ALL Next.js developer indicators
+  devIndicators: false,
 
   // Custom headers for performance and security
   async headers() {
@@ -65,10 +69,23 @@ const nextConfig = {
             key: 'Referrer-Policy',
             value: 'origin-when-cross-origin'
           },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600, must-revalidate',
+          },
         ],
       },
       {
         source: '/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/images/:path*',
         headers: [
           {
             key: 'Cache-Control',

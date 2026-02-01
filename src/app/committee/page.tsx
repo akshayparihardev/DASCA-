@@ -30,7 +30,7 @@ export default function CommitteePage() {
 
   return (
     <div
-      className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-300"
+      className="min-h-screen bg-white dark:bg-[#0a0a0f] text-slate-900 dark:text-white transition-colors duration-300"
       data-testid="committee-page"
     >
 
@@ -38,7 +38,7 @@ export default function CommitteePage() {
       <motion.section
         ref={heroRef}
         style={{ opacity }}
-        className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-300"
+        className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-[#0a0a0f] dark:via-[#0f0f14] dark:to-[#0a0a0f] transition-colors duration-300"
       >
         {/* Simplified Background - CSS Only */}
         <div className="absolute inset-0 opacity-30">
@@ -114,7 +114,7 @@ export default function CommitteePage() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     data-testid="committee-search"
-                    className="w-full pl-14 pr-14 py-4 rounded-2xl bg-white dark:bg-slate-800/50 border-2 border-slate-100 dark:border-slate-700/50 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-blue-300 dark:focus:border-blue-500/50 focus:ring-4 focus:ring-blue-50 dark:focus:ring-blue-500/10 transition-all text-base font-medium shadow-xl backdrop-blur-md"
+                    className="w-full pl-14 pr-14 py-4 rounded-2xl bg-white dark:bg-[#1a1a1f]/50 border-2 border-slate-100 dark:border-[#2a2a2f]/50 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-blue-300 dark:focus:border-blue-500/50 focus:ring-4 focus:ring-blue-50 dark:focus:ring-blue-500/10 transition-all text-base font-medium shadow-xl backdrop-blur-md"
                   />
                   {searchQuery && (
                     <button
@@ -149,7 +149,7 @@ export default function CommitteePage() {
         <div className="absolute bottom-0 left-0 right-0">
           {/* fill-current uses text color from class, allowing us to switch based on mode */}
           <svg
-            className="w-full h-24 text-gray-50 dark:text-slate-900 fill-current transition-colors duration-300"
+            className="w-full h-24 text-gray-50 dark:text-[#0f0f14] fill-current transition-colors duration-300"
             viewBox="0 0 1440 120"
             xmlns="http://www.w3.org/2000/svg"
             preserveAspectRatio="none"
@@ -160,7 +160,7 @@ export default function CommitteePage() {
       </motion.section>
 
       {/* Committee Carousel Section */}
-      <section className="bg-gray-50 dark:bg-slate-900 pb-40 pt-10 transition-colors duration-300">
+      <section className="bg-gray-50 dark:bg-[#0f0f14] pb-40 pt-10 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6">
           <CommitteeMembersCarousel members={filteredBySearch} loop={true} />
         </div>

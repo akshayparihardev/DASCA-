@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Moon, Sun } from 'lucide-react';
 
 const Navbar = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -15,8 +15,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'About', href: '/about' },
     { name: 'Events', href: '/events' },
-    { name: 'Committee', href: '/committee' },
-    { name: 'Teachers', href: '/teachers' }
+    { name: 'Committee', href: '/committee' }
   ];
 
   // Check if mounted
@@ -69,6 +68,22 @@ const Navbar = () => {
     };
   }, [isMobileMenuOpen]);
 
+  // Toggle dark mode
+  const toggleDarkMode = () => {
+    const newMode = !isDarkMode;
+    setIsDarkMode(newMode);
+
+    if (newMode) {
+      document.documentElement.classList.add('dark');
+      document.body.classList.add('dark-mode');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.body.classList.remove('dark-mode');
+      localStorage.setItem('theme', 'light');
+    }
+  };
+
   if (!isMounted) {
     return null;
   }
@@ -83,10 +98,10 @@ const Navbar = () => {
 
           background: isScrolled
             ? (isDarkMode
-              ? 'rgba(2, 6, 23, 0.95)'
+              ? 'rgba(10, 10, 15, 0.95)'
               : 'rgba(255, 255, 255, 0.95)')
             : (isDarkMode
-              ? 'rgba(2, 6, 23, 0.75)'
+              ? 'rgba(10, 10, 15, 0.75)'
               : 'rgba(255, 255, 255, 0.5)'),
 
           backdropFilter: 'blur(20px)',
@@ -157,6 +172,19 @@ const Navbar = () => {
             ))}
           </nav>
 
+          {/* Dark Mode Toggle - Desktop */}
+          <button
+            onClick={toggleDarkMode}
+            className="hidden lg:block p-2 rounded-lg transition-all duration-300 hover:scale-110"
+            style={{
+              color: isDarkMode ? '#FFFFFF' : '#1E293B',
+              backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'
+            }}
+            aria-label="Toggle dark mode"
+          >
+            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+
           {/* Mobile Menu Button */}
           <button
             data-testid="nav-mobile-toggle"
@@ -184,7 +212,7 @@ const Navbar = () => {
           className="fixed inset-0 z-[999] lg:hidden"
           style={{
             background: isDarkMode
-              ? 'rgba(2, 6, 23, 0.98)'
+              ? 'rgba(10, 10, 15, 0.98)'
               : 'rgba(255, 255, 255, 0.98)',
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
@@ -217,6 +245,23 @@ const Navbar = () => {
                 />
               </Link>
             ))}
+
+            {/* Dark Mode Toggle - Mobile */}
+            <button
+              onClick={toggleDarkMode}
+              className="mt-6 p-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-3"
+              style={{
+                backgroundColor: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)',
+                color: isDarkMode ? '#FFFFFF' : '#1E293B',
+                animation: 'slideUpFade 0.5s ease-out 0.3s both'
+              }}
+              aria-label="Toggle dark mode"
+            >
+              {isDarkMode ? <Sun size={24} /> : <Moon size={24} />}
+              <span className="font-semibold">
+                {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+              </span>
+            </button>
           </nav>
         </div>
       )}

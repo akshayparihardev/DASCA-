@@ -313,7 +313,7 @@ const CommitteeMembersCarousel = ({
           key={`${activeYear}-${activeDomain}-${activePosition}`}
           setApi={setApi}
           className={cn("w-full pt-6", className)}
-          opts={{ loop, slidesToScroll: 1, align: "start" }}
+          opts={{ loop, slidesToScroll: 1, align: "start", duration: 20, skipSnaps: false }}
           plugins={
             autoplay
               ? [
@@ -335,8 +335,8 @@ const CommitteeMembersCarousel = ({
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{
-                    duration: 0.4,
-                    ease: [0.25, 0.46, 0.45, 0.94]
+                    duration: 0.3,
+                    ease: [0.4, 0, 0.2, 1]
                   }}
                 >
                   <div className="relative mx-auto h-[520px] w-[340px] overflow-hidden rounded-3xl bg-white shadow-2xl">
