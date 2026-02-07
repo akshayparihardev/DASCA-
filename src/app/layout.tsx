@@ -3,6 +3,7 @@ import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { Analytics } from '@vercel/analytics/next';
 
 // Optimized font loading with display swap
 const inter = Inter({
@@ -125,6 +126,9 @@ export default function RootLayout({
 
         {/* Footer - At bottom */}
         <Footer />
+
+        {/* Vercel Web Analytics */}
+        <Analytics />
 
       </body>
     </html>
