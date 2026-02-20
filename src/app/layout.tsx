@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Outfit } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -114,6 +115,7 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
+        <SpeedInsights />
 
         {/* Navbar - Fixed at top */}
         <Navbar />
